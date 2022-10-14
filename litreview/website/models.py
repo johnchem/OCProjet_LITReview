@@ -10,6 +10,9 @@ class Ticket(models.Model):
     image = models.ImageField(null=True, blank=True)
     time_created = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f'{self.title}'
+
 
 class Review(models.Model):
     ticket = models.ForeignKey(to=Ticket, on_delete=models.CASCADE)
@@ -21,6 +24,9 @@ class Review(models.Model):
     user = models.ForeignKey(
         to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     time_created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.time_created.date()}_{self.user.username}'
 
 
 class UserFollows(models.Model):
@@ -38,3 +44,6 @@ class UserFollows(models.Model):
         # ensures we don't get multiple UserFollows instances
         # for unique user-user_followed pairs
         unique_together = ('user', 'followed_user', )
+
+    def __str__(self):
+        return f'{self.user.username}->{self.followed_user.username}'
