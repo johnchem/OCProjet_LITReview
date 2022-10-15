@@ -10,6 +10,16 @@ class Ticket(models.Model):
     image = models.ImageField(null=True, blank=True)
     time_created = models.DateTimeField(auto_now_add=True)
 
+    def get_user_followed_tickets(self, user):
+        # get the followed people by user
+        users_followed = UserFollows.Objects.all().filter(user=user)
+        # remove ticket from unfollowed people
+        tickets = self.Objects.all().filter(user=[users_followed, user])
+        return tickets
+
+    def get_ticket_from_user(self, user):
+        pass
+
     def __str__(self):
         return f'{self.title}'
 
@@ -24,6 +34,11 @@ class Review(models.Model):
     user = models.ForeignKey(
         to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     time_created = models.DateTimeField(auto_now_add=True)
+
+    def get_user_viewable_reviews(self, user):
+        # get the followed people by user
+        # filter the review based on the list of followed people
+        pass
 
     def __str__(self):
         return f'{self.time_created.date()}_{self.user.username}'
