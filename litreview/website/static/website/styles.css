@@ -1,9 +1,17 @@
-* {
-    color: blue;
+.nav__bar__block{
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-content: center;
+    list-style-type: none;
 }
 
-body{
-    background-color: red;
+.nav__bar__block li{
+    margin: 10px;
+}
+
+.nav__bar__block:first-child{
+    margin-left: 50%;
 }
 
 .feed__block{
@@ -12,4 +20,8 @@ body{
 
 .ticket__block{
     border: 1pt solid black;
+}
+
+.review__block{
+    border: 1pt solid black
 }

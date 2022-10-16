@@ -1,6 +1,10 @@
 
 {% extends "website/main.html" %}
 
+{% block title %}
+    Welcome {{user}}
+{% endblock %}
+
 {% block content %}
     <div class="feed__block">
         {% for post in posts %}

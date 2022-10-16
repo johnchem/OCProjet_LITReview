@@ -2,12 +2,24 @@
 
 <html>
     <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Payssan Jonathan">
         <title>
-            landing page
+            {% block title %}{% endblock %}
         </title>
-        <link rel="stylesheet" href="{% static 'website/styles.css' %}" />
+        <link rel="stylesheet" href="{% static 'website/styles.css' %}" type="text/css" />
     </head>
+
     <body>
-       {% block content %} {% endblock %}
+        <nav>
+            <ul class="nav__bar__block">
+                <li><a href="">LITReview</a></li>
+                <li><a href="/feed">Flux</a></li>
+                <li><a href="/subscription">Abonnements</a></li>
+                <li><a href="/log_out">Se Deconnecter</a></li>
+            </ul>
+        </nav>
+        {% block content %} {% endblock %}
     </body>
+
 </html>
