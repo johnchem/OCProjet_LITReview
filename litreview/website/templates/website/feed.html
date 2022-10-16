@@ -1,13 +1,16 @@
 
-{% extend 'website/main.html' %}
+{% extends "website/main.html" %}
 
 {% block content %}
-
-{% for post in posts %}
-    {% if post.content_type == 'TICKETS' %}
-        <div class="ticket">{% include 'website/ticket_snippet.html' with post=post user=user%}</div>
-    {% elif post.content_type == 'REVIEWS' %}
-        <div class="review">{% include 'website/review_snippet.html' with post=post user=user%}</div>
-{% endfor %}
+    <div class="feed__block">
+        {% for post in posts %}
+            <div class="test">{{post.user}}</div>
+            {% if post.content_type == 'TICKET' %}
+                <div class="ticket__block">{% include 'website/ticket_snippet.html' with post=post user=user %}</div>
+            {% elif post.content_type == 'REVIEW' %}
+                <div class="review__block">{% include 'website/review_snippet.html' with post=post user=user %}</div>
+            {% endif %}
+        {% endfor %}
+    </div>
 
 {% endblock %}

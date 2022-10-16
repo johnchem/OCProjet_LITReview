@@ -1,0 +1,15 @@
+* {
+    color: blue;
+}
+
+body{
+    background-color: red;
+}
+
+.feed__block{
+    align-items: center;
+}
+
+.ticket__block{
+    border: 1pt solid black;
+}

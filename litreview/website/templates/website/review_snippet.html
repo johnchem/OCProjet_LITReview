@@ -1,15 +1,14 @@
+<p>{{post.user}} - {{user}}</p>
 <div>
-    <div>
-        {% if post.user==user %}
-            Vous avez
-        {% elif %}
-            {{post.user}} a
-        {% endif %}
-            publié une review
-    </div>
-    <div>
-        <h1>{{post.headline}}</h1>
-        <p>Note : {{post.rating}}/5</p>
-        <p>original ticket : {{post.ticket}}</p> 
-    </div>     
+    {% if post.user == user %}
+        Vous avez
+    {% else %}
+        {{post.user}} a
+    {% endif %}
+        publié une review
 </div>
+<div>
+    <h1>{{post.headline}}</h1>
+    <p>Note : {{post.rating}}/5</p>
+    <p>original ticket : {{post.ticket}}</p> 
+</div>     
