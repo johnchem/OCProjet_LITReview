@@ -6,9 +6,12 @@
 {% endblock %}
 
 {% block content %}
+    <div class="feed__button">
+        <button id="feed__ticket" type="button">Demander une critique</button>
+        <button id="feed__review" type="button">Créer une critique</button>
+    </div>
     <div class="feed__block">
         {% for post in posts %}
-            <div class="test">{{post.user}}</div>
             {% if post.content_type == 'TICKET' %}
                 <div class="ticket__block">{% include 'website/ticket_snippet.html' with post=post user=user %}</div>
             {% elif post.content_type == 'REVIEW' %}

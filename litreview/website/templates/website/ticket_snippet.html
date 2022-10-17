@@ -1,13 +1,23 @@
 <div>
-    <div>
-        {% if post.user == user %}
-            Vous avez
-        {% else %}
-            {{post.user}} a
-        {% endif %}
-            publié une review
+    <div class="ticket__header">
+        <div class="ticket__user">
+            {% if post.user == user %}
+                Vous avez publié
+            {% else %}
+                {{post.user}} a demandé
+            {% endif %}
+                une critique
+        </div>
+        <div class="ticket__time">{{post.time_created|date:'H:i, d F Y'}}</div>
     </div>
-    <div>
-        <h1>{{post.title}}</h1>
-    </div>     
+    <div class="ticket__content">
+        <div class="ticket__title"> {{post.title}} </div>
+        <div class="ticket__description">{{post.description}}</div>
+        <div class="ticket__picture">
+            <img src="{{post.image.url}}" alt="image du livre">
+        </div>
+        <div class="ticket__review__button">
+            <button id="review__button" type="button">Créer une critique</button>
+        </div>
+    </div>
 </div>

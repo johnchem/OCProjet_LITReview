@@ -1,14 +1,25 @@
-<p>{{post.user}} - {{user}}</p>
-<div>
-    {% if post.user == user %}
-        Vous avez
-    {% else %}
-        {{post.user}} a
-    {% endif %}
+<div class="review__header">
+    <div class="review__user">
+        {% if post.user == user %}
+            Vous avez
+        {% else %}
+            {{post.user}} a
+        {% endif %}
         publié une review
+    </div>
+    <div class="review__time">{{post.time_created|date:'H:i, d F Y' }}</div> 
 </div>
-<div>
-    <h1>{{post.headline}}</h1>
-    <p>Note : {{post.rating}}/5</p>
-    <p>original ticket : {{post.ticket}}</p> 
+<div class="review__content">
+    <div class="review__title">{{post.headline}}</div>
+    <div class="review__rating">Note : {{post.rating}}/5</p>
+    <div class="review__ticket">
+        <div class="ticket__header">Ticket - {{post.ticket.user}}</div>
+        <div class="ticket__title"> {{post.ticket.title}} </div>  
+        <div class="ticket__picture">
+            <img src="{{post.ticket.image.url}}" alt="image du livre">
+        </div>
+        <div class="ticket__review__button">
+            <button id="review__button" type="button">Créer une critique</button>
+        </div>
+    </div> 
 </div>     
