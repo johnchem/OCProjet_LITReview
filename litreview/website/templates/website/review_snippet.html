@@ -1,3 +1,5 @@
+{% load static %}
+
 <div class="review__header">
     <div class="review__user">
         {% if post.user == user %}
@@ -10,8 +12,16 @@
     <div class="review__time">{{post.time_created|date:'H:i, d F Y' }}</div> 
 </div>
 <div class="review__content">
-    <div class="review__title">{{post.headline}}</div>
-    <div class="review__rating">Note : {{post.rating}}/5</p>
+    <div class="review__headline">{{post.headline}}</div>
+    <div class="review__rating">
+        <div class="review__rating text">Note : {{post.rating}}/5</div>
+        {% for %}
+        <img class="review__rating star1" src="{% static 'website/icon_book.png' %}">
+        <img class="review__rating star2" src="{% static 'website/icon_book.png' %}">
+        <img class="review__rating star3" src="{% static 'website/icon_book.png' %}">
+        <img class="review__rating star4" src="{% static 'website/icon_book.png' %}">
+        <img class="review__rating star5" src="{% static 'website/icon_book.png' %}">
+    </div>
     <div class="review__ticket">
         <div class="ticket__header">Ticket - {{post.ticket.user}}</div>
         <div class="ticket__title"> {{post.ticket.title}} </div>  

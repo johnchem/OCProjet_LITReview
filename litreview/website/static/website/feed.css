@@ -1,0 +1,102 @@
+.feed__block{
+    align-items: center;
+    margin-left:1em;
+    margin-right: 1em;
+}
+
+.ticket__block{
+    border: 1pt solid black;
+}
+
+.ticket__header, .review__header{
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5rem 1rem 0rem 1rem; 
+}
+
+.ticket__content, .review__ticket{
+    padding:1rem;
+    display:grid;
+    grid-template: "title title title" 2rem "picture descrip descrip" 1fr "picture button button" auto / 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    height: fit-content;
+    grid-auto-flow: dense;
+}
+
+.ticket__title{
+    grid-area: title;
+    font-size: larger;
+    color:red;
+    padding: 1rem 0rem 1rem 0rem;
+}
+
+.ticket__picture, .review__picture{
+    grid-area: picture;
+    justify-self: center;
+    align-self:  center;
+}
+
+.ticket__picture img{
+    display:block;
+    max-height: 200px;
+    min-height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.ticket__description{
+    align-self:flex-start;
+    grid-area: descrip; 
+}
+
+.ticket__review__button{
+    grid-area: button;
+    align-self: center;
+    justify-self: right;
+    padding-right: 2rem;
+    width: auto;
+    height: auto;
+}
+
+.ticket__review__button button{
+    width: fit-content;
+    padding: 1rem;
+} 
+
+.review__block{
+    border: 1pt solid black
+}
+
+.review__ticket{
+    border: 1pt black solid;
+    margin: 1rem
+}
+
+.review__content{
+    display: grid;
+    grid-template: "headline rating" 1fr "ticket ticket" 1fr / 1fr 1fr
+}
+
+.review__title{
+    grid: headline;
+}
+
+.review__rating{
+    grid: rating;
+    display: inline-block; 
+    height: 1rem;
+    justify-content: center;
+    margin: 0 0.2rem;
+}
+
+.star1 {
+    filter: grayscale(100%);
+    opacity: 0.3;
+}
+
+
+.review__ticket{
+    grid: ticket;
+}

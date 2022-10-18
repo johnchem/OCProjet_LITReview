@@ -1,6 +1,12 @@
 
 {% extends "website/main.html" %}
 
+{% load static %}
+
+{% block extrahead %}
+    <link rel="stylesheet" href="{% static 'website/feed.css' %}" type="text/css" />
+{% endblock %}
+
 {% block title %}
     Welcome {{user}}
 {% endblock %}
@@ -20,4 +26,10 @@
         {% endfor %}
     </div>
 
+{% endblock %}
+
+{% block extrafooter %}
+    <div class="credit">
+        <a href="https://www.flaticon.com/free-icons/book" title="book icons">Book icons created by Freepik - Flaticon</a>
+    </div>
 {% endblock %}
