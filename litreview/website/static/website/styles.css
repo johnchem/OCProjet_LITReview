@@ -1,3 +1,6 @@
+* { 
+    font-size: 15px;
+}
 .nav__bar__block{
     display:flex;
     flex-direction: row;

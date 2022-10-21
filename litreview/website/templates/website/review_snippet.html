@@ -15,12 +15,7 @@
     <div class="review__headline">{{post.headline}}</div>
     <div class="review__rating">
         <div class="review__rating text">Note : {{post.rating}}/5</div>
-        {% for %}
-        <img class="review__rating star1" src="{% static 'website/icon_book.png' %}">
-        <img class="review__rating star2" src="{% static 'website/icon_book.png' %}">
-        <img class="review__rating star3" src="{% static 'website/icon_book.png' %}">
-        <img class="review__rating star4" src="{% static 'website/icon_book.png' %}">
-        <img class="review__rating star5" src="{% static 'website/icon_book.png' %}">
+        <img class="review__rating star" src="{% static 'website/icon_book_' %}{{ post.rating }}.png">
     </div>
     <div class="review__ticket">
         <div class="ticket__header">Ticket - {{post.ticket.user}}</div>

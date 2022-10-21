@@ -4,6 +4,12 @@
     margin-right: 1em;
 }
 
+/* 
+
+################ Ticket Block ################
+
+*/
+
 .ticket__block{
     border: 1pt solid black;
 }
@@ -43,7 +49,6 @@
     min-height: 150px;
     margin-left: auto;
     margin-right: auto;
-    
 }
 
 .ticket__description{
@@ -65,38 +70,63 @@
     padding: 1rem;
 } 
 
+/*
+
+################ Review Block ################
+
+*/
+
 .review__block{
-    border: 1pt solid black
+    border: 1pt solid black;
 }
 
-.review__ticket{
-    border: 1pt black solid;
-    margin: 1rem
-}
+/* .review__content{
+    display: flex;
+    grid-template: "headline rating" auto "ticket ticket" 1fr / 1fr 1fr
+} 
+*/
 
-.review__content{
-    display: grid;
-    grid-template: "headline rating" 1fr "ticket ticket" 1fr / 1fr 1fr
-}
-
-.review__title{
-    grid: headline;
+.review__headline, .text{
+    display: flex;
+    font-size: larger;
+    padding-left: 1rem;
 }
 
 .review__rating{
-    grid: rating;
-    display: inline-block; 
-    height: 1rem;
+    display: flex;
+    height: 1.5rem;
     justify-content: center;
     margin: 0 0.2rem;
 }
 
-.star1 {
-    filter: grayscale(100%);
-    opacity: 0.3;
+.review__rating .text{
+    /* font-size: larger; */
+    justify-content: center;
 }
 
+.review__content .review__ticket{
+    width: fit-content;
+    grid: "picture user" auto "picture title" auto "picture button" 1fr / 1fr auto;
+    border: 1pt black solid;
+    margin: 1rem;
+}
 
-.review__ticket{
-    grid: ticket;
+.review__ticket .ticket__header{
+    grid-area: user;
+    justify-self: right;
+    align-self: center;
+}
+
+.review__ticket .ticket__title{
+    grid-area: title;
+}
+
+.review__ticket .ticket__picture{
+    grid-area: picture;
+}
+
+.review__ticket .ticket__review__button{
+    align-self: center;
+    justify-self: right;
+    padding: 1.5rem;
 }
