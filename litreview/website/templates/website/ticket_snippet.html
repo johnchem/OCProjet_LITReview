@@ -2,11 +2,10 @@
     <div class="ticket__header">
         <div class="ticket__user">
             {% if post.user == user %}
-                Vous avez publié
+                Vous avez publié un ticket
             {% else %}
-                {{post.user}} a demandé
+                {{post.user}} a demandé une critique
             {% endif %}
-                une critique
         </div>
         <div class="ticket__time">{{post.time_created|date:'H:i, d F Y'}}</div>
     </div>

@@ -1,0 +1,13 @@
+{% extends 'website/main.html' %}
+
+{% block title %}Inscrivez Vous{% endblock %}
+
+{% block content %}
+    <p>Inscrivez-vous</p>
+    <form method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <button type="button"> Retourner </button>
+        <button type="submit"> S'inscrire </button>
+    </form>
+{% endblock content %}

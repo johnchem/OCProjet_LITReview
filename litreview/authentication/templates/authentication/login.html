@@ -5,8 +5,9 @@
 {% block content %}
     <p>{{message}}</p>
     <form method="post">
-        {{ form.as_p}}
+        {{ form.as_p }}
         {% csrf_token %}
         <button type="submit"> Se connecter</button>
     </form>
+    <p>Pas encore membre ? <a href="{% url 'signup' %}">Inscrivez-vous maintenant !</a></p>
 {% endblock content %}

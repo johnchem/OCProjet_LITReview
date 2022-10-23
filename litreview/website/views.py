@@ -9,7 +9,8 @@ from . import models
 
 @login_required
 def feed(request):
-    user = User.objects.all().filter(username='paul1')[0]
+    if request.user.is_authenticated:
+        user = request.user
     followed_user = [x.followed_user.id for x in models.UserFollows.objects.filter(user=user)]
     reviewed_ticket = [x.id for x in models.Ticket.objects.filter(review__user=user)]
 

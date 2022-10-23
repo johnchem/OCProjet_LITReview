@@ -25,6 +25,7 @@ import website.views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", authentication.views.LoginPage.as_view(), name='login'),
+    path("signup/", authentication.views.SignUpPage.as_view(), name="signup"),
     path("logout/", authentication.views.logout_user, name='logout'),
     path('main/', website.views.main, name='landing'),
     path('feed/', website.views.feed, name='feed')
