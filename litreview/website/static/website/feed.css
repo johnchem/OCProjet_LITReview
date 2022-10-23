@@ -4,13 +4,8 @@
     margin-right: 1em;
 }
 
-/* 
-
-################ Ticket Block ################
-
-*/
-
 .ticket__block{
+    margin: 0.5rem 0rem 0.5rem 0rem;
     border: 1pt solid black;
 }
 
@@ -70,41 +65,44 @@
     padding: 1rem;
 } 
 
-/*
-
-################ Review Block ################
-
-*/
-
 .review__block{
+    margin: 0.5rem 0rem 0.5rem 0rem;
     border: 1pt solid black;
 }
 
-/* .review__content{
-    display: flex;
-    grid-template: "headline rating" auto "ticket ticket" 1fr / 1fr 1fr
+.review__content{
+    display: grid;
+    grid-template: "headline rating" auto "body body" auto "ticket ticket" 1fr / auto 1fr
 } 
-*/
 
 .review__headline, .text{
-    display: flex;
+    grid-area: headline;
     font-size: larger;
     padding-left: 1rem;
 }
 
 .review__rating{
+    grid-area: rating;
     display: flex;
+    flex-direction: row;
     height: 1.5rem;
-    justify-content: center;
+    justify-content: left;
     margin: 0 0.2rem;
 }
 
 .review__rating .text{
-    /* font-size: larger; */
+    font-size: large;
     justify-content: center;
 }
 
+.review__body{
+    grid-area: body;
+    padding-left: 1rem;
+}
+
 .review__content .review__ticket{
+    grid-area: ticket;
+    justify-self: right;
     width: fit-content;
     grid: "picture user" auto "picture title" auto "picture button" 1fr / 1fr auto;
     border: 1pt black solid;

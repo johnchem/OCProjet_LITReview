@@ -17,14 +17,17 @@
         <div class="review__rating text">Note : {{post.rating}}/5</div>
         <img class="review__rating star" src="{% static 'website/icon_book_' %}{{ post.rating }}.png">
     </div>
+    <div class="review__body">{{post.body}}</div>
     <div class="review__ticket">
         <div class="ticket__header">Ticket - {{post.ticket.user}}</div>
         <div class="ticket__title"> {{post.ticket.title}} </div>  
         <div class="ticket__picture">
             <img src="{{post.ticket.image.url}}" alt="image du livre">
         </div>
-        <div class="ticket__review__button">
-            <button id="review__button" type="button">Créer une critique</button>
-        </div>
+        {% if not post.user_reviewed_ticket %}
+            <div class="ticket__review__button">
+                <button id="review__button" type="button">Créer une critique</button>
+            </div>
+        {% endif %}
     </div> 
 </div>     
