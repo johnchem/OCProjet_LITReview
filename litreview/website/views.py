@@ -3,9 +3,11 @@ from itertools import chain
 from django.shortcuts import render
 from django.db.models import CharField, Value, Case, When, BooleanField, Q
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 from . import models
 
+@login_required
 def feed(request):
     user = User.objects.all().filter(username='paul1')[0]
     followed_user = [x.followed_user.id for x in models.UserFollows.objects.filter(user=user)]

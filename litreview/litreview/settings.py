@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "website.apps.WebsiteConfig",
+    "authentication.apps.AuthenticationConfig"
+
 ]
 
 MIDDLEWARE = [
@@ -125,3 +127,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR.joinpath('media/')
+
+LOGIN_URL = 'login'
+

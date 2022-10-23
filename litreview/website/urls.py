@@ -3,6 +3,6 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-    path('', views.main, name='landing'),
+    path('main/', views.main, name='landing'),
     path('feed/', views.feed, name='feed')
 ]

@@ -15,13 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic.base import RedirectView
+
+import authentication.views
+import website.views
 
 urlpatterns = [
-    path("", include('website.urls')),
     path("admin/", admin.site.urls),
+    path("", authentication.views.LoginPage.as_view(), name='login'),
+    path("logout/", authentication.views.logout_user, name='logout'),
+    path('main/', website.views.main, name='landing'),
+    path('feed/', website.views.feed, name='feed')
 ]
 
 if settings.DEBUG:
