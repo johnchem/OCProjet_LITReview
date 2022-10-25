@@ -5,9 +5,9 @@
 {% block content %}
     <p>Inscrivez-vous</p>
     <form method="post">
-        {{ form.as_p }}
         {% csrf_token %}
-        <button type="button"> Retourner </button>
+        {{ form.as_p }}
+        <button class="button signup__return" type="submit"> Retourner </button>
         <button type="submit"> S'inscrire </button>
     </form>
 {% endblock content %}
