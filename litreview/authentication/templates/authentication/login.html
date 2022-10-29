@@ -1,6 +1,12 @@
 {% extends 'website/main.html' %}
 
+{% load static %}
+
 {% block title %}login{% endblock %}
+
+{% block extrahead %}
+    <link rel="stylesheet" href="{% static 'authentication/login.css' %}" type="text/css" />
+{% endblock %}
 
 {% block content %}
     <p>{{message}}</p>

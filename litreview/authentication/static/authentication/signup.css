@@ -1,0 +1,32 @@
+.signup__title {
+    font-size: 1.5rem;
+    align-self: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.control{
+    width:60%;
+}
+
+
+input{
+    display: flex;
+    align-items: center;
+    padding: 0.3rem;
+    margin: 0.5rem;
+    width:200px;
+}
+
+.signup__button{
+    
+}
+
+form button {
+    margin: 0.3rem;
+}
+

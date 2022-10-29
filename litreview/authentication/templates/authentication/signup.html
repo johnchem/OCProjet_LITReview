@@ -1,13 +1,23 @@
 {% extends 'website/main.html' %}
 
+{% load static %}
+{% load crispy_forms_tags %}
+
 {% block title %}Inscrivez Vous{% endblock %}
 
+{% block extrahead %}
+    <link rel="stylesheet" href="{% static 'authentication/signup.css' %}" type="text/css" />
+{% endblock %}
+
 {% block content %}
-    <p>Inscrivez-vous</p>
+    <p class="signup__title">Inscrivez-vous</p>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button class="button signup__return" type="submit"> Retourner </button>
-        <button type="submit"> S'inscrire </button>
+        {{ form|crispy }}
+        <div class="signup__button">
+            <button class="button signup__submit" type="submit"> S'inscrire </button>
+            <button class="button signup__return" type="submit"> Retourner </button>
+        </div>
+            
     </form>
 {% endblock content %}
