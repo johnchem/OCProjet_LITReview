@@ -11,13 +11,21 @@
 
 {% block content %}
     <p class="signup__title">Inscrivez-vous</p>
-    <form method="post">
+    <form id="signup__form", method="post">
         {% csrf_token %}
-        {{ form|crispy }}
-        <div class="signup__button">
-            <button class="button signup__submit" type="submit"> S'inscrire </button>
-            <button class="button signup__return" type="submit"> Retourner </button>
-        </div>
-            
+        {{ form | crispy }}
     </form>
+    
+    <div class="signup__button">
+        <a href="{% url 'login'%}">
+            <button class="button signup__return"
+                    name="return__button"
+                    type="submit"> Retourner </button>
+        </a>
+        <button class="button signup__submit"
+                name="sign__button"
+                form="signup__form"        
+                type="submit"> S'inscrire </button>
+    </div>
+
 {% endblock content %}

@@ -10,13 +10,14 @@
 
 {% block content %}
     <p>{{message}}</p>
-    <form method="post">
+    {% crispy form form.helper %}
+    {% comment %} <form method="post">
         {{ form.as_p }}
         {% csrf_token %}
         <button type="submit"> Se connecter</button>
-    </form>
+    </form> {% endcomment %}
     <div class="login__signup__text">Pas encore membre ? </div>
-    <button type="button">
-        <a href="{% url 'signup' %}">Inscrivez-vous maintenant !</a>
-    </button>
+    <a href="{% url 'signup' %}">
+            <button type:"button">Inscrivez-vous maintenant !</button>
+    </a>
 {% endblock content %}

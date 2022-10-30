@@ -1,6 +1,6 @@
-from logging import PlaceHolder
-from tkinter import Widget
-from turtle import width
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit
+
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -8,22 +8,32 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth import get_user_model
 
 
-class LoginForm(forms.Form):
-    username = forms.CharField(max_length=63, label="Nom d'utilisateur")
-    password = forms.CharField(max_length=63, widget=forms.PasswordInput, label="Mot de passe")
 
-class CustomSignUpForm(forms.Form):
-    username = forms.CharField(label='username')
-    password1 = forms.CharField(label='password1', widget=forms.PasswordInput)
-    password2 = forms.CharField(label="password2", widget=forms.PasswordInput)
-    class Meta(forms.Form):
-        model=User
-        field=('username', 'password1', 'password2')
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=63)
+    password = forms.CharField(max_length=63, widget=forms.PasswordInput)
     
+    def __init__(self, *args, **kargs):
+        super().__init__(*args, **kargs)
+        
+        for field in self.fields:
+            self.fields[field].help_text = None
+            self.fields[field].label = ''
+        
+        self.fields["username"].widget.attrs.update({
+            'placeholder':"Nom d'utilisateur",
+        })
+        self.fields["password"].widget.attrs.update({
+            'placeholder':'Mot de passe',
+            'maxlength':16,
+        })
+
+
 
 class SignUpForm(UserCreationForm):
     def __init__(self, *args, **kargs):
         super().__init__(*args, **kargs)
+        self.helper = FormHelper()
         
         for field in self.fields:
             self.fields[field].help_text = None
@@ -52,6 +62,8 @@ class SignUpForm(UserCreationForm):
             'placeholder':'Confirmer mot de passe',
             'maxlenght':16,
         })
+
+        self.helper.add_input(Submit('submit', 'Submit'))
     class Meta(UserCreationForm.Meta):
         model = get_user_model()
         fields = ('username', 'password1', 'password2')

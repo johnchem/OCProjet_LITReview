@@ -1,11 +1,12 @@
 .signup__title {
     font-size: 1.5rem;
-    align-self: center;
+    text-align: center;
 }
 
 form {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template: "blank username error_user" 1fr "blank pwd1 error_pwd1" 1fr "blank pwd2 error_pwd2" 1fr/ 1fr 1fr 1fr;
+    /* flex-direction: column; */
     align-items: center;
 }
 
@@ -13,20 +14,53 @@ form {
     width:60%;
 }
 
+.error{
+    color: red;
+    margin: 0rem;
+}
+
+#div_id_username{
+    grid-area: username;
+}
+
+.errorlist{
+    grid-area: error_user;
+}
+
+#div_id_password1{
+    grid-area: pwd1;
+}
+
+#div_id_password1 .error{
+    grid-area: error_pwd1;
+}
+
+#div_id_password2{
+    grid-area: pwd2;
+}
+
+#div_id_password2 .error{
+    grid-area: error_pwd2;
+}
 
 input{
-    display: flex;
-    align-items: center;
     padding: 0.3rem;
     margin: 0.5rem;
     width:200px;
 }
 
 .signup__button{
-    
+    display:flex;
+    flex-direction: row;
+    margin-right: auto;
+    margin-left: auto;
+    justify-content: center;
+    row-gap: 0.3rem;
 }
 
-form button {
+.signup__button button {
     margin: 0.3rem;
+    width: auto;
+    padding:0.5rem;
 }
 
