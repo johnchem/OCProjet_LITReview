@@ -1,6 +1,7 @@
 {% extends 'website/main.html' %}
 
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block title %}login{% endblock %}
 
@@ -10,14 +11,12 @@
 
 {% block content %}
     <p>{{message}}</p>
-    {% crispy form form.helper %}
-    {% comment %} <form method="post">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <button type="submit"> Se connecter</button>
-    </form> {% endcomment %}
-    <div class="login__signup__text">Pas encore membre ? </div>
-    <a href="{% url 'signup' %}">
-            <button type:"button">Inscrivez-vous maintenant !</button>
-    </a>
+    {% crispy form %}
+    
+    <div class="login__signup">
+        <div class="login__signup__text">Pas encore membre ? </div>
+        <a href="{% url 'signup' %}">
+                <button type:"button">Inscrivez-vous maintenant !</button>
+        </a>
+    </div>
 {% endblock content %}

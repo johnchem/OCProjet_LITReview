@@ -34,6 +34,9 @@ class SignUpForm(UserCreationForm):
     def __init__(self, *args, **kargs):
         super().__init__(*args, **kargs)
         self.helper = FormHelper()
+        self.helper.form_id = 'signup__form'
+        self.helper.form_method = 'post'
+        self.helper.error_text_inline = False
         
         for field in self.fields:
             self.fields[field].help_text = None
@@ -62,8 +65,7 @@ class SignUpForm(UserCreationForm):
             'placeholder':'Confirmer mot de passe',
             'maxlenght':16,
         })
-
-        self.helper.add_input(Submit('submit', 'Submit'))
+        
     class Meta(UserCreationForm.Meta):
         model = get_user_model()
         fields = ('username', 'password1', 'password2')

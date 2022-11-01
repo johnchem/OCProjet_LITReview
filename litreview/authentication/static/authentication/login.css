@@ -1,0 +1,31 @@
+body{
+    display: grid;
+    grid-template: "nav nav" 1fr "login signup" 1fr / 1fr 1fr;
+}
+
+nav {
+    grid-area : nav
+}
+
+form {
+    grid-area: login;
+    display: block;
+    margin-left: 50%;
+}
+
+input {
+    transform: translate(-50%, 0%);
+    width : 300px;
+    padding: 0.3rem;
+    margin: 0.5rem;
+}
+
+.help-block{
+    color: red;
+    margin: 0rem;
+}
+
+.login__signup {
+    grid-area: signup;
+    margin: 0 auto 0 auto;
+}

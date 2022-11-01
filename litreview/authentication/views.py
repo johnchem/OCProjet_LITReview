@@ -17,7 +17,6 @@ class LoginPage(View):
         request, self.template_name, context={'form':form, 'message':message}
         )
 
-
     def post(self, request):
         form = self.form_class(request.POST)
         message = ''
