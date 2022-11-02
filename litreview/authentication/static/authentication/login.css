@@ -1,6 +1,6 @@
 body{
     display: grid;
-    grid-template: "nav nav" 1fr "login signup" 1fr / 1fr 1fr;
+    grid-template: "nav nav" auto "login signup" 1fr / 1fr 1fr;
 }
 
 nav {
@@ -13,9 +13,13 @@ form {
     margin-left: 50%;
 }
 
+#login__button, .button {
+    width: 300px;
+}
+
 input {
     transform: translate(-50%, 0%);
-    width : 300px;
+    width: 300px;
     padding: 0.3rem;
     margin: 0.5rem;
 }
@@ -27,5 +31,10 @@ input {
 
 .login__signup {
     grid-area: signup;
-    margin: 0 auto 0 auto;
+    display: flex block;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
+
+

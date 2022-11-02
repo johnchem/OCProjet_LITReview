@@ -1,5 +1,5 @@
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
+from crispy_forms.layout import Submit, Button
 
 from django import forms
 from django.contrib.auth.models import User
@@ -15,7 +15,7 @@ class LoginForm(forms.Form):
     
     def __init__(self, *args, **kargs):
         super().__init__(*args, **kargs)
-        
+
         for field in self.fields:
             self.fields[field].help_text = None
             self.fields[field].label = ''
@@ -28,16 +28,22 @@ class LoginForm(forms.Form):
             'maxlength':16,
         })
 
+    @property
+    def helper(self):
+        helper = FormHelper()
+        helper.form_id = 'login__form'
+        helper.form_method = 'POST'
+        # self.helper.add_input(Submit("login__button","Se Connecter"))
+        helper.add_input(Submit(name="login__button",
+                    value="Se Connecter",
+                    css_class="login__button button"))
+        return helper
 
 
 class SignUpForm(UserCreationForm):
     def __init__(self, *args, **kargs):
         super().__init__(*args, **kargs)
-        self.helper = FormHelper()
-        self.helper.form_id = 'signup__form'
-        self.helper.form_method = 'post'
-        self.helper.error_text_inline = False
-        
+
         for field in self.fields:
             self.fields[field].help_text = None
             self.fields[field].label = ''
@@ -65,6 +71,14 @@ class SignUpForm(UserCreationForm):
             'placeholder':'Confirmer mot de passe',
             'maxlenght':16,
         })
+
+    @property
+    def helper(self):
+        helper = FormHelper()
+        helper.form_id = 'signup__form'
+        helper.form_method = 'post'
+        helper.error_text_inline = False
+        return helper
         
     class Meta(UserCreationForm.Meta):
         model = get_user_model()

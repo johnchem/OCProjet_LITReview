@@ -27,7 +27,7 @@
     margin:1rem;
 }
 
-button{
+button, .button{
     height: 3rem;
     width: 20%;
     transition-duration: 0.4s;
