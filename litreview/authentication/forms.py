@@ -44,9 +44,6 @@ class LoginForm(forms.Form):
                     value="Se Connecter",
                     css_class="login__button button"))
         return helper
-    
-
-
 
 class SignUpForm(UserCreationForm):
     def __init__(self, *args, **kargs):
