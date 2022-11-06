@@ -2,7 +2,6 @@ from itertools import chain
 
 from django.shortcuts import render
 from django.db.models import CharField, Value, Case, When, BooleanField, Q
-from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 from . import models

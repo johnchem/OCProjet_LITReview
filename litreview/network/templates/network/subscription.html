@@ -1,7 +1,7 @@
-{% extend "website/main.html" %}
+{% extends "website/main.html" %}
 
 {% load static %}
-{% load crispy-django-tags %}
+{% load crispy_forms_tags %}
 
 {% block extrahead %}
 <link rel="stylesheet" href="{% static 'network/subscription.css' %}" type="text/css" />
@@ -12,11 +12,11 @@
     {% crispy searchbox_form searchbox_form.helper %}
     
     <div class="subscription__form title">Abonnements</div>
-    {% crispy subscrip_form subscrip_form.helper %}
+    {% comment %} {% crispy subscrip_form subscrip_form.helper %} {% endcomment %}
     
     <div class="followers__list title">Abonnés</div>
     {% for user in followers %}
-        <div>{{user}}</div>
+        <div>{{ user }}</div>
     {% endfor %}
 
 {% endblock %}
