@@ -1,8 +1,9 @@
 from django.urls import path
 from django.contrib import admin
-from . import views
 
+from network import views
+
+app_name = 'network'
 urlpatterns = [
-    path('<username>/', views.main, name='landing'),
-    
+    path('subscription/', views.UserNetwork.as_view(), name='subscription'),
 ]

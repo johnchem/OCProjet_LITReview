@@ -19,16 +19,20 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic.base import RedirectView
 
-import authentication.views
-import website.views
+from authentication import views as auth_views
+from website import views as website_views
+from network import views as network_views
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("", authentication.views.LoginPage.as_view(), name='login'),
-    path("signup/", authentication.views.SignUpPage.as_view(), name="signup"),
-    path("logout/", authentication.views.logout_user, name='logout'),
-    path('main/', website.views.main, name='landing'),
-    path('feed/', website.views.feed, name='feed')
+    path('admin/', admin.site.urls),
+    path('', auth_views.LoginPage.as_view(), name='login'),
+    path('signup/', auth_views.SignUpPage.as_view(), name='signup'),
+    path('logout/', auth_views.logout_user, name='logout'),
+    path('main/', website_views.main, name='landing'),
+    path('feed/', website_views.feed, name='feed'),
+    # path('subscription/', redirect('subscription')),
+    path('<slug:username>/', include('network.urls', namespace='network')),
+    # path('<slug:username>/subscription/', network_views.UserNetwork.as_view(), name='subscription'),
 ]
 
 if settings.DEBUG:

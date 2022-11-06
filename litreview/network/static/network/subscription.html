@@ -1,0 +1,22 @@
+{% extend "website/main.html" %}
+
+{% load static %}
+{% load crispy-django-tags %}
+
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'network/subscription.css' %}" type="text/css" />
+{% endblock %}
+
+{% block content %}
+    <div class="search__box__form title">Suivre d'autres utilisateurs</div>
+    {% crispy searchbox_form searchbox_form.helper %}
+    
+    <div class="subscription__form title">Abonnements</div>
+    {% crispy subscrip_form subscrip_form.helper %}
+    
+    <div class="followers__list title">Abonnés</div>
+    {% for user in followers %}
+        <div>{{user}}</div>
+    {% endfor %}
+
+{% endblock %}
