@@ -3,22 +3,29 @@ from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 from django.shortcuts import get_object_or_404
-from django.forms import formset_factory
+from django.forms import modelformset_factory
 
 from . import forms
 from website import models
 
 
 class UserNetwork(LoginRequiredMixin, View):
-    model = User
     template_name='network/subscription.html'
-    form_class = forms.SearchBox
+    form_class_search_box = forms.SearchBox
+    form_class_followed_user = forms.FollowedUserForm
 
     
     def get(self, request, **kwargs):
-        searchbox_form = self.form_class()
-        subscrip_form = ""
+        searchbox_form = self.form_class_search_box()
+        
         user = request.user
+        followed_user = [x.followed_user for x in models.UserFollows.objects.filter(user=user)]
+        FollowedUserSet = modelformset_factory(
+            models.UserFollows,
+            form = self.form_class_followed_user,
+            fields = ("followed_user", ), 
+            )
+        formset = FollowedUserSet()
 
         followers = [x.user.username for x in models.UserFollows.objects.filter(followed_user=user)]
 
@@ -28,7 +35,7 @@ class UserNetwork(LoginRequiredMixin, View):
             context={
                 "name":"Abonnement",
                 "searchbox_form": searchbox_form,
-                "subscrip_form": subscrip_form,
+                "subscrip_form": formset,
                 "followers": followers,
             }
         )
@@ -43,23 +50,3 @@ class UserNetwork(LoginRequiredMixin, View):
                 "name":"Abonnement",
             }
         )
-
-class FollowUser(LoginRequiredMixin, View):
-    template_name = 'network/userfollewed.html'
-    form_class = forms.FollowedUserForm
-
-    def get(self, request):
-        user = request.user
-        followed_user = [x.followed_user for x in models.UserFollows.objects.filter(user=user)]
-        FollowedUserSet = formset_factory(self.form_class, extra=len(followed_user))
-        formset = FollowedUserSet()
-
-        return render(
-            request, 
-            self.template_name,
-            context={
-                'formset':formset
-            }
-            )
-
-        
