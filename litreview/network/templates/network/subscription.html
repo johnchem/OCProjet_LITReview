@@ -12,7 +12,8 @@
     {% crispy searchbox_form searchbox_form.helper %}
     
     <div class="subscription__form title">Abonnements</div>
-    {% crispy subscrip_form %}
+    {% crispy subscrip_form helper %}
+    {% comment %} {% for followed_user in foll%} {% endcomment %}
     
     <div class="followers__list title">Abonnés</div>
     {% for user in followers %}

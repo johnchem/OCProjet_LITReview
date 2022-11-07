@@ -7,6 +7,7 @@ from django.forms import modelformset_factory
 
 from . import forms
 from website import models
+from network.forms import FollowedUserFormSetHelper
 
 
 class UserNetwork(LoginRequiredMixin, View):
@@ -19,13 +20,28 @@ class UserNetwork(LoginRequiredMixin, View):
         searchbox_form = self.form_class_search_box()
         
         user = request.user
-        followed_user = [x.followed_user for x in models.UserFollows.objects.filter(user=user)]
+        followed_users = [x.followed_user for x in models.UserFollows.objects.filter(user=user)]
+        print(*followed_users)
         FollowedUserSet = modelformset_factory(
             models.UserFollows,
             form = self.form_class_followed_user,
-            fields = ("followed_user", ), 
+            extra=3, 
             )
-        formset = FollowedUserSet()
+        
+        data = []
+        for followed_user in followed_users:
+            data.append({
+                'user':user.username,
+                'followed_user':followed_user.username})
+
+        formset = FollowedUserSet(initial=data,)
+        helper = FollowedUserFormSetHelper()
+        # helper.add_input(Submit(
+        #     name='unfollow__button',
+        #     value='Se désabonner',
+        #     css_class='unfollow__button',
+        #     ))
+        # formset = self.form_class_followed_user()
 
         followers = [x.user.username for x in models.UserFollows.objects.filter(followed_user=user)]
 
@@ -36,6 +52,7 @@ class UserNetwork(LoginRequiredMixin, View):
                 "name":"Abonnement",
                 "searchbox_form": searchbox_form,
                 "subscrip_form": formset,
+                "helper":helper,
                 "followers": followers,
             }
         )

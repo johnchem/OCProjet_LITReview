@@ -1,9 +1,9 @@
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
+from crispy_forms.layout import Submit, Layout, Fieldset
 from django.forms import ModelForm
-
 from django import forms
+
 from website.models import UserFollows
 
 
@@ -32,17 +32,36 @@ class SearchBox(forms.Form):
         return helper
 
 class FollowedUserForm(ModelForm):
-    user = forms.CharField(label='')
+    user = forms.CharField(
+        label='',
+        widget=forms.HiddenInput,
+        )
     
-    def __init__(self, *args, **kargs):
-        super(FollowedUserForm, self).__init__(*args, **kargs)
+    followed_user = forms.CharField(
+        label='',
+        widget = forms.HiddenInput(attrs={
+            'label':'followed_user',
+            }
+            )
+        )
 
-        self.helper = FormHelper(self)
-        self.helper.add_input(Submit(
-            name=f'unfollow__button',
-            value='Se désabonner',
-            css_class='unfollow__button', 
-        ))
     class Meta:
         model = UserFollows
         fields = ['user', 'followed_user', ]
+
+class FollowedUserFormSetHelper(FormHelper):
+    def __init__(self, *args, **kargs):
+        super().__init__(*args, **kargs)
+        self.form_method ='post'
+        self.layout = Layout(
+            Fieldset(
+                'user',
+                'followed_user',
+            ),
+            Submit(
+                name='unfollow__button',
+                value='Se désabonner',
+                css_class='unfollow__button',
+            )
+
+        )
