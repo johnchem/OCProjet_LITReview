@@ -14,7 +14,6 @@ class UserNetwork(LoginRequiredMixin, View):
     template_name='network/subscription.html'
     form_class_search_box = forms.SearchBox
     form_class_followed_user = forms.FollowedUserForm
-
     
     def get(self, request, *args, **kwargs):
         searchbox_form = self.form_class_search_box()
@@ -48,7 +47,6 @@ class UserNetwork(LoginRequiredMixin, View):
         followed_users = [x.followed_user for x in models.UserFollows.objects.filter(user=user)]
         print(*followed_users)
         
-
         followers = [x.user.username for x in models.UserFollows.objects.filter(followed_user=user)]
 
         return render(
@@ -62,16 +60,19 @@ class UserNetwork(LoginRequiredMixin, View):
             }
         )
 
+
 class UnfollowUser(LoginRequiredMixin, View):
     template_name = 'network/unfollow_confirmation.hmtl'
     form_class = ''
 
     def get(self, request, **kwargs):
         user = request.user
+        print("coucou")
         if 'name' in kwargs:
             name = kwargs['name']
             models.UserFollows.objects.filter(user=user, followed_user=name).delete
-            return redirect('subscription')
+        return redirect("network:subscription", user.username)
 
-    def post(self):
-        pass
+    def post(self, request):
+        user = request.user
+        return redirect("network:subscription", user.username)
