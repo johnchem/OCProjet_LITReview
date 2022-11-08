@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
-from django.shortcuts import get_object_or_404
+from django.shortcuts import redirect
 from django.forms import modelformset_factory
 
 from . import forms
@@ -16,32 +16,13 @@ class UserNetwork(LoginRequiredMixin, View):
     form_class_followed_user = forms.FollowedUserForm
 
     
-    def get(self, request, **kwargs):
+    def get(self, request, *args, **kwargs):
         searchbox_form = self.form_class_search_box()
         
         user = request.user
         followed_users = [x.followed_user for x in models.UserFollows.objects.filter(user=user)]
         print(*followed_users)
-        FollowedUserSet = modelformset_factory(
-            models.UserFollows,
-            form = self.form_class_followed_user,
-            extra=3, 
-            )
         
-        data = []
-        for followed_user in followed_users:
-            data.append({
-                'user':user.username,
-                'followed_user':followed_user.username})
-
-        formset = FollowedUserSet(initial=data,)
-        helper = FollowedUserFormSetHelper()
-        # helper.add_input(Submit(
-        #     name='unfollow__button',
-        #     value='Se désabonner',
-        #     css_class='unfollow__button',
-        #     ))
-        # formset = self.form_class_followed_user()
 
         followers = [x.user.username for x in models.UserFollows.objects.filter(followed_user=user)]
 
@@ -51,19 +32,46 @@ class UserNetwork(LoginRequiredMixin, View):
             context={
                 "name":"Abonnement",
                 "searchbox_form": searchbox_form,
-                "subscrip_form": formset,
-                "helper":helper,
+                "followed_users": followed_users,
                 "followers": followers,
             }
         )
 
-    def post(self, request, **kwargs):
-        form = self.form_class()
+    def post(self, request, *args, **kwargs):
+        if request.POST["search__button"]:
+            followed_user = User.objects.filter(username=request.POST["username"])[0]
+            item = models.UserFollows(user=request.user, followed_user=followed_user)
+            item.save()
+        searchbox_form = self.form_class_search_box()
         
+        user = request.user
+        followed_users = [x.followed_user for x in models.UserFollows.objects.filter(user=user)]
+        print(*followed_users)
+        
+
+        followers = [x.user.username for x in models.UserFollows.objects.filter(followed_user=user)]
+
         return render(
             request,
             self.template_name,
             context={
                 "name":"Abonnement",
+                "searchbox_form": searchbox_form,
+                "followed_users": followed_users,
+                "followers": followers,
             }
         )
+
+class UnfollowUser(LoginRequiredMixin, View):
+    template_name = 'network/unfollow_confirmation.hmtl'
+    form_class = ''
+
+    def get(self, request, **kwargs):
+        user = request.user
+        if 'name' in kwargs:
+            name = kwargs['name']
+            models.UserFollows.objects.filter(user=user, followed_user=name).delete
+            return redirect('subscription')
+
+    def post(self):
+        pass

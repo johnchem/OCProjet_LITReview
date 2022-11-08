@@ -23,7 +23,7 @@ class SearchBox(forms.Form):
     def helper(self):
         helper = FormHelper()
         helper.form_id = 'search__user__form'
-        helper.form_method = 'GET'
+        helper.form_method = 'POST'
         helper.add_input(Submit(
             name="search__button",
             value="Suivre Utilisateur",
@@ -63,5 +63,4 @@ class FollowedUserFormSetHelper(FormHelper):
                 value='Se désabonner',
                 css_class='unfollow__button',
             )
-
         )

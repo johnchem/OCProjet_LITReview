@@ -12,8 +12,12 @@
     {% crispy searchbox_form searchbox_form.helper %}
     
     <div class="subscription__form title">Abonnements</div>
-    {% crispy subscrip_form helper %}
-    {% comment %} {% for followed_user in foll%} {% endcomment %}
+    {% for followed_user in followed_users %}
+        <div class='label__unfollow__{{forloop.counter}}'>{{followed_user}}</div>
+        <a class='unfollow__link__{{forloop.counter}}', hlink="unfollow/?id={{followed_user.id}}">
+            <button class='unfollow__button button'>Se désabonner</button>
+        </a>
+        {% endfor %} 
     
     <div class="followers__list title">Abonnés</div>
     {% for user in followers %}
