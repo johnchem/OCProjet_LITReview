@@ -1,0 +1,13 @@
+{% extends "website/main.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block extrahead %}
+{% endblock %}
+
+{% block content %}
+    <h1>Ne plus suivre {{relation.followed_user}}</h1>
+    <a href="{% url 'network:subscription' user.username %}">
+        <button type=submit> ok </button>
+    </a> 
+{% endblock %}

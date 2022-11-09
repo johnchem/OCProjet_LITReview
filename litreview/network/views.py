@@ -38,6 +38,7 @@ class UserNetwork(LoginRequiredMixin, View):
 
     def post(self, request, *args, **kwargs):
         if request.POST["search__button"]:
+            
             followed_user = User.objects.filter(username=request.POST["username"])[0]
             item = models.UserFollows(user=request.user, followed_user=followed_user)
             item.save()
@@ -62,15 +63,23 @@ class UserNetwork(LoginRequiredMixin, View):
 
 
 class UnfollowUser(LoginRequiredMixin, View):
-    template_name = 'network/unfollow_confirmation.hmtl'
+    template_name = 'network/test.html'
     form_class = ''
 
     def get(self, request, **kwargs):
         user = request.user
-        print("coucou")
-        if 'name' in kwargs:
-            name = kwargs['name']
-            models.UserFollows.objects.filter(user=user, followed_user=name).delete
+        if request.GET["id"]:
+            followed_user = request.GET["id"]
+            relation = models.UserFollows.objects.filter(user=user, followed_user__id=followed_user)[0]
+            if relation:
+                relation.delete()
+        # return render(
+        #     request,
+        #     self.template_name,
+        #     context={
+        #         "relation":relation
+        #     }
+        # )
         return redirect("network:subscription", user.username)
 
     def post(self, request):
