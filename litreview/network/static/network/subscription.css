@@ -1,4 +1,55 @@
 .title{
     font-weight: bolder;
     font-size: larger;
+    margin: 0.5rem;
+}
+
+#search__user__form{
+    margin-left: 0.5rem;
+    display: flex;
+    flex-direction: row;
+}
+
+#div_id_username{
+    width: 80%;
+}
+
+#id_username{
+    width: 100%;
+}
+
+.label {
+    display: flex;
+    border: 1px black solid;
+    border-radius: 5px;
+    width: 80%;
+    text-align: start;
+    vertical-align: middle;
+    align-items: center;
+    padding: 0.5rem;
+}
+
+.label::after, #search__user__form::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+input#id_username{
+    height: 3rem;
+}
+
+.user__container{
+    display: flex;
+    flex-direction: row; 
+    margin: 0.5rem;
+}
+
+a {
+    width: auto;
+}
+
+.unfollow__button, .button {
+    width:100%;
+    margin: 0rem 0.5rem 0rem 0.5rem;
 }
