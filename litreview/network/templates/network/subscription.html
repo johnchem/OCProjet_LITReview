@@ -31,7 +31,7 @@
     <div class="followers__container">
         <div class="followers__list title">Abonnés</div>
         {% for user in followers %}
-            <div>{{ user }}</div>
+            <div class="label followers__label__{{forloop.counter}}">{{ user }}</div>
         {% endfor %}
     </div>
 

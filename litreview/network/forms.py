@@ -26,7 +26,7 @@ class SearchBox(forms.Form):
         helper.form_method = 'POST'
         helper.add_input(Submit(
             name="search__button",
-            value="Suivre Utilisateur",
+            value="Envoyer",
             css_class="search__button button"
             ))
         return helper
