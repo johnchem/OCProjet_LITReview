@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "website.apps.WebsiteConfig",
     "network.apps.NetworkConfig",
     "authentication.apps.AuthenticationConfig",
+    "creation.apps.CreationConfig",
     "crispy_forms",
 
 ]

@@ -1,9 +1,9 @@
 {% load static %}
 
 {% if user.is_authenticated %}
-    {% url 'network:feed' username=user.username as feed_url %}
-    {% url 'network:posts' username=user.username as post_url %}
-    {% url 'network:subscription' username=user.username as sub_url %}
+    {% url 'feed' as feed_url %}
+    {% url 'posts' username=user.username as post_url %}
+    {% url 'subscription' username=user.username as sub_url %}
 {% else %}
     {% url 'login' as feed_url %}
     {% url 'login' as post_url %}
@@ -25,11 +25,10 @@
     <body>
         <nav>
             <ul class="nav__bar__block">
-                <li><a href="">LITReview</a></li>
+                <li><a href={{ feed_url }}>LITReview</a></li>
                 <li><a href={{ feed_url }}>Flux</a></li>
                 <li><a href={{ post_url }}>Posts</a></li>
                 <li><a href={{ sub_url }}>Abonnements</a></li>
-                {% comment %} <li><a href="/subscription">Abonnements</a></li> {% endcomment %}
                 <li>{% if user.is_authenticated %}
                         <a href="{% url 'logout' %}">Déconnecter {{user.username}}</a></li>
                     {% else %}

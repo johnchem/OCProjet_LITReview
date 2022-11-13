@@ -13,8 +13,12 @@
 
 {% block content %}
     <div class="feed__button">
-        <button id="feed__ticket" type="button">Demander une critique</button>
-        <button id="feed__review" type="button">Créer une critique</button>
+        <a href={% url 'create_ticket' %} class="feed__ticket__link">
+            <button id="feed__ticket" type="button">Demander une critique</button>
+        </a>
+        <a href={% url 'create_review' %} class="feed__review__link">
+            <button id="feed__review" type="button">Créer une critique</button>
+        </a>
     </div>
     <div class="feed__block">
         {% for post in posts %}

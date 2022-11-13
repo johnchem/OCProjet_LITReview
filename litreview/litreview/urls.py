@@ -30,9 +30,9 @@ urlpatterns = [
     path('logout/', auth_views.logout_user, name='logout'),
     path('main/', website_views.main, name='landing'),
     path('feed/', website_views.feed, name='feed'),
-    # path('subscription/', redirect('subscription')),
     path('<slug:username>/', include('network.urls', namespace='network')),
-    # path('<slug:username>/subscription/', network_views.UserNetwork.as_view(), name='subscription'),
+    path('<slug:username>/subscription/', network_views.UserNetwork.as_view(), name='subscription'),
+    path('<slug:username>/unfollow/', network_views.UnfollowUser.as_view(), name='unfollow'),
 ]
 
 if settings.DEBUG:
