@@ -1,0 +1,20 @@
+{% extends "website/main.html" %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block extrahead %}
+    <link rel="stylesheet" href="{% static 'creation/ticket_creation.css' %}" type="text/css" />
+{% endblock %}
+
+{% block title %}
+    nouveau ticket
+{% endblock %}
+
+{% block content %}
+    <div class="ticket__creation__title title">Créer un ticket</div>
+    {% crispy form %}
+{% endblock %}
+
+{% block extrafooter %}
+{% endblock %}

@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, reverse
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic.base import RedirectView
@@ -22,6 +22,7 @@ from django.views.generic.base import RedirectView
 from authentication import views as auth_views
 from website import views as website_views
 from network import views as network_views
+from creation import views as creation_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,6 +34,7 @@ urlpatterns = [
     path('<slug:username>/', include('network.urls', namespace='network')),
     path('<slug:username>/subscription/', network_views.UserNetwork.as_view(), name='subscription'),
     path('<slug:username>/unfollow/', network_views.UnfollowUser.as_view(), name='unfollow'),
+    path('<slug:username>/newticket/', creation_views.CreationTicketView.as_view(), name='create_ticket'),
 ]
 
 if settings.DEBUG:
