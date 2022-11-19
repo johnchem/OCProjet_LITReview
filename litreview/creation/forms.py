@@ -5,13 +5,15 @@ from django.forms import ModelForm, Textarea, ImageField
 from website.models import Ticket, Review
 
 class CreateTicket(ModelForm):
-    picture = ImageField()
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+        super(CreateTicket, self).__init__(*args, **kwargs)
+        self.fields['title'].label = ''
+        self.fields['description'].label = ''
+        
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            'title',
-            'description',
+            Field('title', placeholder="Titre"),
+            Field('description', placeholder="Taper votre message ici"),
             HTML("""
             <img id="uploadPreview" src="">
             """),
@@ -22,3 +24,4 @@ class CreateTicket(ModelForm):
     class Meta:
         model = Ticket
         fields = ['title', 'description', 'image']
+
