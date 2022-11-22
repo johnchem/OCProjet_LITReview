@@ -35,6 +35,8 @@ urlpatterns = [
     path('<slug:username>/subscription/', network_views.UserNetwork.as_view(), name='subscription'),
     path('<slug:username>/unfollow/', network_views.UnfollowUser.as_view(), name='unfollow'),
     path('<slug:username>/newticket/', creation_views.CreationTicketView.as_view(), name='create_ticket'),
+    path('<slug:username>/newreview/', creation_views.CreationReviewView.as_view(), name='create_review'),
+
 ]
 
 if settings.DEBUG:
