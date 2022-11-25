@@ -9,11 +9,26 @@
 {% endblock %}
 
 {% block title %}
-    nouveau ticket
+    nouvelle critique
 {% endblock %}
 
 {% block content %}
-    {% crispy form %}
+    <form action="" method="post" enctype="multipart/form-data">
+        {% comment %} {% csrf %} {% endcomment %}
+        <div class="ticket">
+            <p>{{ticket_title}}</p>
+            {% crispy ticket_form %}
+        </div>
+
+        <div class="review">
+            <p>{{review_title}}</p>
+            {% crispy review_form %}
+        </div>
+
+        <div class="button__field">
+            <input type="submit" value='Envoyer' class="button">
+        </div>
+    </form>
 {% endblock %}
 
 {% block extrafooter %}

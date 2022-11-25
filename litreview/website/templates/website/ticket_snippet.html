@@ -13,7 +13,9 @@
         <div class="ticket__title"> {{post.title}} </div>
         <div class="ticket__description">{{post.description}}</div>
         <div class="ticket__picture">
-            <img src="{{post.image.url}}" alt="image du livre">
+            {% if post.image %}
+                <img src="{{post.image.url}}" alt="image du livre">
+            {% endif %}
         </div>
         {% if not post.user_reviewed_ticket %}
             <div class="ticket__review__button">

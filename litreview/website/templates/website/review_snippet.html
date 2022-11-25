@@ -22,7 +22,9 @@
         <div class="ticket__header">Ticket - {{post.ticket.user}}</div>
         <div class="ticket__title"> {{post.ticket.title}} </div>  
         <div class="ticket__picture">
-            <img src="{{post.ticket.image.url}}" alt="image du livre">
+            {% if post.ticket.image %}
+                <img src="{{post.ticket.image.url}}" alt="image du livre">
+            {% endif %}    
         </div>
         {% if not post.user_reviewed_ticket %}
             <div class="ticket__review__button">

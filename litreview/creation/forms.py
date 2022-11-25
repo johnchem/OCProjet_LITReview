@@ -24,16 +24,32 @@ class ReviewLayout(Layout):
             Field('body', placeholder='Commentaire'),
         )
 
-class CreateTicket(forms.ModelForm):
+class CreateTicketAlone(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        super(CreateTicket, self).__init__(*args, **kwargs)
+        super(CreateTicketAlone, self).__init__(*args, **kwargs)
         self.fields['title'].label = ''
         self.fields['description'].label = ''
         
         self.helper = FormHelper()
         self.helper.layout = Layout(
             TicketLayout(),
-            Submit('Envoyer', 'envoyer')
+            Submit('envoyer','Envoyer')
+        )
+
+    class Meta:
+        model = Ticket
+        fields = ['title', 'description', 'image']
+
+class CreateTicketCombine(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(CreateTicketCombine, self).__init__(*args, **kwargs)
+        self.fields['title'].label = ''
+        self.fields['description'].label = ''
+        
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+        self.helper.layout = Layout(
+            TicketLayout()
         )
 
     class Meta:
@@ -41,29 +57,27 @@ class CreateTicket(forms.ModelForm):
         fields = ['title', 'description', 'image']
 
 class CreateReview(forms.ModelForm):
+    CHOICES = [('0','- 0'),
+                   ('1','- 1'),
+                   ('2','- 2'),
+                   ('3','- 3'),
+                   ('4','- 4'),
+                   ('5','- 5'),
+        ]
+    rating = forms.ChoiceField(choices=CHOICES,
+                            widget=forms.RadioSelect
+                            )
     def __init__(self,*args, **kwargs):
         super(CreateReview, self).__init__(*args, **kwargs)
-        self.fields['title'].label = ''
-        self.fields['Description'].label = ''
-        self.fields['headline'].lable = ''
-        self.fields['body'].label = ''
+        self.fields['headline'].label = 'Titre'
+        self.fields['body'].label = 'Commentaire'
+        self.fields['rating'].label = 'Note'
 
         self.helper = FormHelper()
+        self.helper.form_tag = False
         self.helper.layout = Layout(
-            Div(
-                HTML("""
-                <p>{{ticket_title}}</p>
-                """, css_class= "title review__creation__title"),
-                TicketLayout(),
-            ),
-            Div(
-                HTML("""
-                <p>{{review_title}}</p>
-                """, css_class = "title review__creation__title"),
-                ReviewLayout(),
-                Submit('Envoyer', 'envoyer')
-            )
+            ReviewLayout(),
         )
     class Meta:
-        model = [Ticket, Review]
-        fields = ['title', 'description', 'image', 'headline', 'rating', 'body']
+        model = Review
+        fields = ['headline', 'rating', 'body']
