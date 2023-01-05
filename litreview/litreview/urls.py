@@ -24,6 +24,7 @@ from website import views as website_views
 from network import views as network_views
 from creation import views as creation_views
 
+app_name = 'litreview'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', auth_views.LoginPage.as_view(), name='login'),
@@ -36,7 +37,6 @@ urlpatterns = [
     path('<slug:username>/unfollow/', network_views.UnfollowUser.as_view(), name='unfollow'),
     path('<slug:username>/newticket/', creation_views.CreationTicketView.as_view(), name='create_ticket'),
     path('<slug:username>/newreview/', creation_views.CreationReviewView.as_view(), name='create_review'),
-
 ]
 
 if settings.DEBUG:

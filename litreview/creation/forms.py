@@ -29,6 +29,9 @@ class CreateTicketAlone(forms.ModelForm):
         super(CreateTicketAlone, self).__init__(*args, **kwargs)
         self.fields['title'].label = ''
         self.fields['description'].label = ''
+
+        self.fields['image'].label = 'Couverture'
+        self.fields['image'].widget.input_text = 'Nouvelle'
         
         self.helper = FormHelper()
         self.helper.layout = Layout(
@@ -45,6 +48,12 @@ class CreateTicketCombine(forms.ModelForm):
         super(CreateTicketCombine, self).__init__(*args, **kwargs)
         self.fields['title'].label = ''
         self.fields['description'].label = ''
+
+        self.fields['image'].label = 'Couverture'
+        self.fields['image'].attrs = {'class' : 'image_container'} # effet ? 
+        self.fields['image'].widget.initial_text = 'Actuel'
+        self.fields['image'].widget.input_text = 'Nouvelle'
+        # self.fields['image'].widget.attrs = {'class':'turlututu'}
         
         self.helper = FormHelper()
         self.helper.form_tag = False
