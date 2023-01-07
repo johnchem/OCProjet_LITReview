@@ -88,48 +88,24 @@ class CreationReviewView(LoginRequiredMixin, View):
                     'review_title' : 'Critique',
                 }
             )
-class UpdataReviewView(LoginRequiredMixin, View):
-    template_name = 'creation/review_creation.html'
-    form_class_creation_review = CreateReview
-    form_class_creation_ticket = CreateTicketCombine
 
+class AddReviewView(LoginRequiredMixin, View):
+    template_name = 'creation/add_review.html'
+    form_class_creation_review = CreateReview
+    
     def get(self, request, *args, **kwargs):
+        ticket = models.Ticket.objects.get(id=request.GET['id'])
+        
         review_creation = self.form_class_creation_review()
-        ticket_creation = self.form_class_creation_ticket()
         return render(
             request,
             self.template_name,
             context = {
-                'ticket_form':ticket_creation,
+                'ticket_form':ticket,
                 'review_form':review_creation,
                 'ticket_title' : 'Livre / Article',
                 'review_title' : 'Critique',
             }
         )
 
-    def post(self, request, *args, **kwargs):
-        review_creation = self.form_class_creation_review(request.POST)
-        ticket_creation = self.form_class_creation_ticket(request.POST, request.FILES)
-        
-        if review_creation.is_valid() and ticket_creation.is_valid():
-            ticket = ticket_creation.save(commit=False)
-            ticket.user = request.user
-            ticket.save()
 
-            review = review_creation.save(commit=False)
-            review.ticket = ticket
-            review.user = request.user
-            review.save()
-            return redirect('feed')
-        else:
-            return render(
-                request,
-                self.template_name,
-                context = {
-                    'ticket_form':ticket_creation,
-                    'review_form':review_creation,
-                    'ticket_title' : 'Livre / Article',
-                    'review_title' : 'Critique',
-                }
-            )
-    

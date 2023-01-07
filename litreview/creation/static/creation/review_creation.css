@@ -1,3 +1,8 @@
 .asteriskField {
     visibility: hidden;
 }
+
+.ticket {
+    border : 1pt black solid;
+    
+}
