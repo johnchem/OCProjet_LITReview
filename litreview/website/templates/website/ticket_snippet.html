@@ -21,7 +21,7 @@
         </div>
         {% if not post.user_reviewed_ticket %}
             <div class="ticket__review__button">
-                <a href="{% url 'create_review' post.user %}?id={{post.id}}">
+                <a href="{% url 'add_review' post.user %}?id={{post.id}}">
                     <button id="review__button" type="button" action=>Créer une critique</button>
                 </a>
             </div>

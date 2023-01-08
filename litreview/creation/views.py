@@ -13,6 +13,8 @@ class CreationTicketView(LoginRequiredMixin, View):
     form_class_creation_ticket = CreateTicketAlone
     
     def get(self, request, *args, **kwargs):
+        ticket = models.Ticket.objects.get(id=request.GET['id'])
+
         ticket_creation = self.form_class_creation_ticket()
         return render(
             request,
@@ -101,11 +103,14 @@ class AddReviewView(LoginRequiredMixin, View):
             request,
             self.template_name,
             context = {
-                'ticket_form':ticket,
+                'title':'nouvelle critique',
+                'post':ticket,
                 'review_form':review_creation,
                 'ticket_title' : 'Livre / Article',
                 'review_title' : 'Critique',
             }
         )
+    def post():
+        pass
 
 

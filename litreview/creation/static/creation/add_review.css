@@ -1,0 +1,7 @@
+#review__button{
+    visibility: hidden;
+}
+
+.ticket div:first-child{
+    border : 1pt red solid;
+}
