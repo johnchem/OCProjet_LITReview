@@ -2,6 +2,13 @@
     visibility: hidden;
 }
 
-.ticket div:first-child{
-    border : 1pt red solid;
+.ticket {
+    padding: 0 1rem 1rem 1rem;
 }
+
+.ticket > div:first-of-type{
+    border : 1pt black solid;
+    max-width : 80%;
+    margin : 1rem auto auto auto;
+}
+
