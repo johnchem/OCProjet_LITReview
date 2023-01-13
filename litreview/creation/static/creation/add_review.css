@@ -12,3 +12,20 @@
     margin : 1rem auto auto auto;
 }
 
+form {
+    display: block;
+    padding : 1rem;
+}
+
+.control-group {
+    display: block;
+    padding : 0.5rem;
+} 
+
+.control-label {
+    padding-bottom: 0.5rem;
+}
+
+.button__field {
+    float: left;
+}
