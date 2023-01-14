@@ -14,18 +14,27 @@
 
 form {
     display: block;
-    padding : 1rem;
+    padding : 0rem 1rem 1rem 1rem;
 }
 
-.control-group {
-    display: block;
-    padding : 0.5rem;
-} 
+.control-group{
+    margin:1rem;
+}
 
-.control-label {
-    padding-bottom: 0.5rem;
+label {
+    margin-bottom: 10px;
+}
+
+.radio {
+    margin-right: 1rem;
 }
 
 .button__field {
-    float: left;
+    display: grid;
+    justify-items: right;
+}
+
+#id_body {
+    height : 5rem;
+    width : 60%;
 }

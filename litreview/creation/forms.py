@@ -21,7 +21,7 @@ class ReviewLayout(Layout):
         super().__init__(
             Field('headline', placeholder='Titre'),
             'rating',
-            Field('body', placeholder='Commentaire'),
+            Field('body', placeholder="Taper votre message ici"),
         )
 
 class CreateTicketAlone(forms.ModelForm):
