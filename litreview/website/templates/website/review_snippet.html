@@ -26,12 +26,26 @@
                 <img src="{{post.ticket.image.url}}" alt="image du livre">
             {% endif %}    
         </div>
-        {% if not post.user_reviewed_ticket %}
+
+        {% if not post.user_reviewed_ticket and main_feed %}
             <div class="ticket__review__button">
                 <a href="{% url 'add_review' username=post.user %}?id={{post.id}}">
                     <button id="review__button" type="button" action=>Créer une critique</button>
                 </a>
             </div>
         {% endif %}
-    </div> 
+    </div>
+
+    {% if user_feed %}
+            <div class="user__post__button">
+                <a href="{% url 'add_review' post.user %}?id={{post.id}}">
+                    <button id="change__button" type="button" action=>Modifier</button>
+                </a>
+                <a href=>
+                    {% comment %} "{% url 'del_review' post.user %}?id={{post.id}}"> {% endcomment %}
+                    <button id="delete__button" type="button" action=>Supprimer</button>
+                </a>
+            </div>
+    {% endif %}
+    
 </div>     

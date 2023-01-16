@@ -1,0 +1,33 @@
+
+{% extends "website/main.html" %}
+
+{% load static %}
+
+{% block extrahead %}
+    <link rel="stylesheet" href="{% static 'website/feed.css' %}" type="text/css" />
+    {% comment %} <link rel="stylesheet" href="{% static 'creation/user_post.css' %}" type="text/css" /> {% endcomment %}
+
+{% endblock %}
+
+{% block title %}
+    {{title}}
+{% endblock %}
+
+{% block content %}
+    <div class="user__post__block">
+        {% for post in posts %}
+            {% if post.content_type == 'TICKET' %}
+                <div class="ticket__block">{% include 'website/ticket_snippet.html' with post=post user=user %}</div>
+            {% elif post.content_type == 'REVIEW' %}
+                <div class="review__block">{% include 'website/review_snippet.html' with post=post user=user %}</div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+{% endblock %}
+
+{% block extrafooter %}
+    <div class="credit">
+        <a href="https://www.flaticon.com/free-icons/book" title="book icons">Book icons created by Freepik - Flaticon</a>
+    </div>
+{% endblock %}

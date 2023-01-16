@@ -45,8 +45,12 @@ def feed(request):
         key=lambda post: post.time_created,
         reverse=True
     )
-    print([x.user_reviewed_ticket for x in posts])
-    return render(request, 'website/feed.html', context={'posts': posts, 'user': user}) 
+    return render(request, 
+    'website/feed.html', 
+    context={
+        'posts': posts, 
+        'user': user,
+        'main_feed' : True}) 
 
 def main(request):
     return render(request, 'website/main.html')

@@ -1,7 +1,9 @@
-from django.shortcuts import render, redirect
+from itertools import chain
 
 from django.views import View
+from django.db.models import Value, CharField
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render, redirect
 
 from creation.forms import CreateTicketAlone, CreateTicketCombine, CreateReview
 from website import models
@@ -15,7 +17,7 @@ class CreationTicketView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         ticket = models.Ticket.objects.get(id=request.GET['id'])
 
-        ticket_creation = self.form_class_creation_ticket()
+        ticket_creation = self.form_class_creation_ticket(initial=ticket)
         return render(
             request,
             self.template_name,
@@ -103,14 +105,59 @@ class AddReviewView(LoginRequiredMixin, View):
             request,
             self.template_name,
             context = {
-                'title':'nouvelle critique',
                 'post':ticket,
                 'review_form':review_creation,
                 'ticket_title' : 'Livre / Article',
                 'review_title' : 'Critique',
             }
         )
-    def post():
-        pass
 
 
+class UserPostHistory(LoginRequiredMixin, View):
+    template_name = "creation/user_posts.html"
+    
+    def post(self, request, *args, **kwargs):
+        user = request.user
+        user_tickets = models.Ticket.objects.filter(user=user)
+        user_tickets = user_tickets.annotate(content_type=Value('TICKET', CharField()))
+
+        user_reviews = models.Review.objects.filter(user=user)
+        user_reviews = user_reviews.annotate(content_type=Value('REVIEW', CharField()))
+
+        posts = sorted(
+            chain(user_reviews, user_tickets),
+            key= lambda posts: posts.time_created,
+            reverse=True
+        )
+
+        return render(request, 
+            self.template_name,
+            context = {
+                'posts':posts,
+                'title':'Vos posts',
+                'user_feed':True,
+            }
+        )
+
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        user_tickets = models.Ticket.objects.filter(user=user)
+        user_tickets = user_tickets.annotate(content_type=Value('TICKET', CharField()))
+
+        user_reviews = models.Review.objects.filter(user=user)
+        user_reviews = user_reviews.annotate(content_type=Value('REVIEW', CharField()))
+
+        posts = sorted(
+            chain(user_reviews, user_tickets),
+            key= lambda posts: posts.time_created,
+            reverse=True
+        )
+
+        return render(request, 
+            self.template_name,
+            context = {
+                'posts':posts,
+                'title':'Vos posts',
+                'user_feed':True,
+            }
+        )

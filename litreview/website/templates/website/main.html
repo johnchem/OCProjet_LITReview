@@ -2,7 +2,7 @@
 
 {% if user.is_authenticated %}
     {% url 'feed' as feed_url %}
-    {% url 'posts' username=user.username as post_url %}
+    {% url 'user_posts' username=user.username as post_url %}
     {% url 'subscription' username=user.username as sub_url %}
 {% else %}
     {% url 'login' as feed_url %}
