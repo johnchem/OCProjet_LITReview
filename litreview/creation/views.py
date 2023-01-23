@@ -17,7 +17,8 @@ class CreationTicketView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         ticket = models.Ticket.objects.get(id=request.GET['id'])
 
-        ticket_creation = self.form_class_creation_ticket(initial=ticket)
+        ticket_creation = self.form_class_creation_ticket(initial={
+            ticket})
         return render(
             request,
             self.template_name,
@@ -56,6 +57,7 @@ class CreationReviewView(LoginRequiredMixin, View):
             'description':ticket.description,
             'image':ticket.image,
         })
+
         return render(
             request,
             self.template_name,
@@ -98,21 +100,34 @@ class AddReviewView(LoginRequiredMixin, View):
     form_class_creation_review = CreateReview
     
     def get(self, request, *args, **kwargs):
-        ticket = models.Ticket.objects.get(id=request.GET['id'])
+        if 'ticket_id' in request.GET: 
+            ticket = models.Ticket.objects.get(id=request.GET['id'])
         
-        review_creation = self.form_class_creation_review()
+            review_creation = self.form_class_creation_review()
+
+        elif 'review_id' in request.GET:
+            review = models.Review.objects.get(id=request.GET['review_id'])
+            ticket = review.ticket
+            print(ticket)
+
+            review_creation = self.form_class_creation_review(initial={
+                'headline': review.headline,
+                'body': review.body,
+                'rating': review.rating,
+        })
+
         return render(
-            request,
-            self.template_name,
-            context = {
-                'post':ticket,
-                'review_form':review_creation,
-                'ticket_title' : 'Livre / Article',
-                'review_title' : 'Critique',
-            }
-        )
-
-
+                request,
+                self.template_name,
+                context = {
+                    'post':ticket,
+                    'review_form': review_creation,
+                    'ticket_title' : 'Livre / Article',
+                    'review_title' : 'Critique',
+                }
+            )  
+        
+        
 class UserPostHistory(LoginRequiredMixin, View):
     template_name = "creation/user_posts.html"
     

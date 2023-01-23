@@ -1,0 +1,23 @@
+.review__content {
+    display: grid;
+    padding: 1rem;
+    grid-template: "headline rating" auto "body body" auto "ticket ticket" 1fr "button button" auto / auto 1fr;
+}
+
+.user__post__button {
+    grid-area: button;
+    align-self: center;
+    justify-self: right;
+    padding-right: 2rem;
+    width: auto;
+    height: auto;
+}
+
+.user__post__button button{
+    width: fit-content;
+    padding: 1rem;
+} 
+
+/* button {
+    max-width: 200px;
+} */
