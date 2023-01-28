@@ -20,7 +20,7 @@
 
         {% if not post.user_reviewed_ticket and main_feed %}
             <div class="ticket__review__button">
-                <a href="{% url 'add_review' post.user %}?ticekt_id={{post.id}}">
+                <a href="{% url 'add_review' post.user %}?ticket_id={{post.id}}">
                     <button id="review__button" type="button" action=>Créer une critique</button>
                 </a>
             </div>
@@ -28,10 +28,10 @@
 
         {% if user_feed %}
             <div class="user__post__button">
-                <a href="{% url 'create_ticket' post.user %}?ticekt_id={{post.id}}">
+                <a href="{% url 'create_ticket' post.user %}?ticket_id={{post.id}}">
                     <button id="change__button" type="button" action=>Modifier</button></a>
 
-                <a href="{% url 'create_ticket' post.user %}?id={{post.id}}">
+                <a href="{% url 'create_ticket' post.user %}?ticket_id={{post.id}}">
                     <button id="delete__button" type="button" action=>Supprimer</button></a>
             </div>
         {% endif %}
