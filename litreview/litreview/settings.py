@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "network.apps.NetworkConfig",
     "authentication.apps.AuthenticationConfig",
     "creation.apps.CreationConfig",
+    "delete.apps.DeleteConfig",
     "crispy_forms",
 
 ]

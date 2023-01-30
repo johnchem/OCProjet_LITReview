@@ -23,6 +23,7 @@ from authentication import views as auth_views
 from website import views as website_views
 from network import views as network_views
 from creation import views as creation_views
+from delete import views as delete_views
 
 app_name = 'litreview'
 urlpatterns = [
@@ -39,8 +40,8 @@ urlpatterns = [
     path('<slug:username>/newticket/', creation_views.CreationTicketView.as_view(), name='create_ticket'),
     path('<slug:username>/newreview/', creation_views.CreationReviewView.as_view(), name='create_review'),
     path('<slug:username>/addreview/', creation_views.AddReviewView.as_view(), name='add_review'),
-    # path('delete/<str:post_name>', redirect('landing'), name='del_review'),
-    # path('delete/<str:post_name>', redirect('landing'), name='del_ticket'),
+    path('delete/<str:post_name>', delete_views.reviewDeletion.as_view(), name='delete_review'),
+    path('delete/<str:post_name>', delete_views.ticketDeletion.as_view(), name='delete_ticket'),
 ]
 
 if settings.DEBUG:

@@ -1,0 +1,21 @@
+{% extends "website/main.html" %}
+
+{% load static %}
+
+{% block extrahead %}
+{% endblock %}
+
+{% block title %}
+    {{title}}
+{% endblock %}
+
+{% block content %}
+    <div>
+        {{message}}
+    </div>
+    <div class="delete__button" >
+        <a href="{% url 'user_posts' user %}">
+            <button id="ok__button" type="button" action="">Ok</button></a>
+    </div>
+{% endblock %}
+    

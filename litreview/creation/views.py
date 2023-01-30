@@ -15,14 +15,18 @@ class CreationTicketView(LoginRequiredMixin, View):
     form_class_creation_ticket = CreateTicketAlone
     
     def get(self, request, *args, **kwargs):
-        ticket = models.Ticket.objects.get(id=request.GET['id'])
+        ticket = models.Ticket.objects.get(id=request.GET['ticket_id'])
 
         ticket_creation = self.form_class_creation_ticket(initial={
-            ticket})
+            'title':ticket.title,
+            'description':ticket.description,
+            'image':ticket.image
+            })
         return render(
             request,
             self.template_name,
             context = {
+            'title': 'modifier un ticket',
             'form':ticket_creation,
             }
         )
@@ -39,6 +43,7 @@ class CreationTicketView(LoginRequiredMixin, View):
                 request,
                 self.template_name,
                 context = {
+                    'title': 'Créer un ticket',
                     'form':ticket_creation,
                 }
             )
@@ -48,26 +53,26 @@ class CreationReviewView(LoginRequiredMixin, View):
     form_class_creation_review = CreateReview
     form_class_creation_ticket = CreateTicketCombine
 
-    def get(self, request, *args, **kwargs):
-        ticket = models.Ticket.objects.get(id=request.GET['id'])
+    # def get(self, request, *args, **kwargs):
+    #     ticket = models.Ticket.objects.get(id=request.GET['review_id'])
         
-        review_creation = self.form_class_creation_review()
-        ticket_creation = self.form_class_creation_ticket(initial={
-            'title':ticket.title,
-            'description':ticket.description,
-            'image':ticket.image,
-        })
+    #     review_creation = self.form_class_creation_review()
+    #     ticket_creation = self.form_class_creation_ticket(initial={
+    #         'title':ticket.title,
+    #         'description':ticket.description,
+    #         'image':ticket.image,
+    #     })
 
-        return render(
-            request,
-            self.template_name,
-            context = {
-                'ticket_form':ticket_creation,
-                'review_form':review_creation,
-                'ticket_title' : 'Livre / Article',
-                'review_title' : 'Critique',
-            }
-        )
+    #     return render(
+    #         request,
+    #         self.template_name,
+    #         context = {
+    #             'ticket_form':ticket_creation,
+    #             'review_form':review_creation,
+    #             'ticket_title' : 'Livre / Article',
+    #             'review_title' : 'Critique',
+    #         }
+    #     )
 
     def post(self, request, *args, **kwargs):
         review_creation = self.form_class_creation_review(request.POST, request.FILES)
@@ -88,6 +93,7 @@ class CreationReviewView(LoginRequiredMixin, View):
                 request,
                 self.template_name,
                 context = {
+                    'title': 'Créer un ticket et une revue',
                     'ticket_form':ticket_creation,
                     'review_form':review_creation,
                     'ticket_title' : 'Livre / Article',
@@ -101,31 +107,45 @@ class AddReviewView(LoginRequiredMixin, View):
     
     def get(self, request, *args, **kwargs):
         if 'ticket_id' in request.GET: 
-            ticket = models.Ticket.objects.get(id=request.GET['id'])
-        
+            ticket = models.Ticket.objects.get(id=request.GET['ticket_id'])
+    
             review_creation = self.form_class_creation_review()
+            title = "création d'une nouvelle revue"
 
         elif 'review_id' in request.GET:
             review = models.Review.objects.get(id=request.GET['review_id'])
             ticket = review.ticket
-            print(ticket)
 
             review_creation = self.form_class_creation_review(initial={
                 'headline': review.headline,
                 'body': review.body,
                 'rating': review.rating,
-        })
+            })
+
+            title = "Modification de la revue"
 
         return render(
                 request,
                 self.template_name,
                 context = {
+                    'title': title,
                     'post':ticket,
                     'review_form': review_creation,
                     'ticket_title' : 'Livre / Article',
                     'review_title' : 'Critique',
                 }
-            )  
+            )
+    def post(self, request, *args, **kwargs):
+        form = self.form_class_creation_review(request.POST)
+
+        if form.is_valid():
+            form.save()
+        
+        return redirect('user_posts', username = request.user)
+        
+        
+
+
         
         
 class UserPostHistory(LoginRequiredMixin, View):

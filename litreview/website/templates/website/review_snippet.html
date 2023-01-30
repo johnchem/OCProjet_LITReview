@@ -40,7 +40,7 @@
             <div class="user__post__button">
                 <a href="{% url 'add_review' post.user %}?review_id={{post.id}}">
                     <button id="change__button" type="button" action="">Modifier</button></a>
-                <a href="{% url 'add_review' post.user %}?id={{post.id}}">
+                <a href="{% url 'delete_review' post.headline %}?review_id={{post.id}}">
                     <button id="delete__button" type="button" action="">Supprimer</button></a>
             </div>
     {% endif %}

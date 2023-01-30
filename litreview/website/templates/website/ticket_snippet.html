@@ -31,7 +31,7 @@
                 <a href="{% url 'create_ticket' post.user %}?ticket_id={{post.id}}">
                     <button id="change__button" type="button" action=>Modifier</button></a>
 
-                <a href="{% url 'create_ticket' post.user %}?ticket_id={{post.id}}">
+                <a href="{% url 'delete_ticket' post.title %}?ticket_id={{post.id}}">
                     <button id="delete__button" type="button" action=>Supprimer</button></a>
             </div>
         {% endif %}
