@@ -11,9 +11,11 @@ class reviewDeletion(LoginRequiredMixin, View):
     template_name = 'delete/delete.html'
     
     def get(self, request, *args, **kwargs):
+        print(request.GET['review_id'])
         try:
             post = models.Review.objects.get(id=request.GET['review_id'])
-            post.delete() 
+            print(post)
+            post.delete()
             message = "la revue a été supprimé"
         except:
             message = "la revue n'a pas pu être trouvé" 
@@ -32,9 +34,11 @@ class ticketDeletion(LoginRequiredMixin, View):
     template_name = 'delete/delete.html'
     
     def get(self, request, *args, **kwargs):
+        print(request.GET['ticket_id'])
+        post = models.Ticket.objects.get(id=request.GET['ticket_id'])
+        print(post)
         try:
-            post = models.Ticket.objects.get(id=request.GET['ticket_id']).delete()
-            answer = post.delete()
+            post.delete()
             message = "le ticket et les revues associées ont été supprimés"
         except :
             message = "le ticket n'a pas pu être trouvé" 

@@ -25,10 +25,11 @@
             document.getElementById("uploadPreview").src = oFREvent.target.result;
         };
     };
-
-    document.addEventListener("DOMContentLoaded", function(){
-        url_initial_image = document.querySelector("#div_id_image a").href;
-        document.getElementById("uploadPreview").src = url_initial_image
-    });
+    if (document.querySelector("#div_id_image a")){
+        document.addEventListener("DOMContentLoaded", function(){
+            url_initial_image = document.querySelector("#div_id_image a").href;
+            document.getElementById("uploadPreview").src = url_initial_image
+        })
+    };
 </script>
 {% endblock %}
