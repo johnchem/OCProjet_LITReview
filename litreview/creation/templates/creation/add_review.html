@@ -22,6 +22,7 @@
         <div class="review">
             <p>{{review_title}}</p>
             {% crispy review_form %}
+            <input type=hidden value={{post.id}} name="ticket_id">
         </div>
 
         <div class="button__field">
