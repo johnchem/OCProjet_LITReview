@@ -34,9 +34,11 @@ class ticketDeletion(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         try:
             post = models.Ticket.objects.get(id=request.GET['ticket_id'])
+            print('try block')
             post.delete()
             message = "le ticket et les revues associées ont été supprimés"
-        except :
+        except:
+            print("error")
             message = "le ticket n'a pas pu être trouvé" 
         
         return render(
