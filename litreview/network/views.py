@@ -85,7 +85,6 @@ class UserNetwork(LoginRequiredMixin, View):
 
 
 class UnfollowUser(LoginRequiredMixin, View):
-    template_name = 'network/test.html'
     form_class = ''
 
     def get(self, request, **kwargs):
@@ -95,13 +94,6 @@ class UnfollowUser(LoginRequiredMixin, View):
             relation = models.UserFollows.objects.filter(user=user, followed_user__id=followed_user)[0]
             if relation:
                 relation.delete()
-        # return render(
-        #     request,
-        #     self.template_name,
-        #     context={
-        #         "relation":relation
-        #     }
-        # )
         return redirect("network:subscription", user.username)
 
     def post(self, request):
