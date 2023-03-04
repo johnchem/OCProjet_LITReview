@@ -52,6 +52,7 @@ def feed(request):
         'user': user,
         'main_feed' : True}) 
 
+@login_required
 def main(request):
     return render(request, 'website/main.html')
 
