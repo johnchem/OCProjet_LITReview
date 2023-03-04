@@ -29,7 +29,7 @@
 
 button, .button{
     height: 3rem;
-    width: 20%;
+    width: 150px;
     transition-duration: 0.4s;
     border-radius: 5px;
 }

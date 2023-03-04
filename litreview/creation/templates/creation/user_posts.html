@@ -14,7 +14,8 @@
 {% endblock %}
 
 {% block content %}
-    <div class="user__post__block">
+    <div class="user__posts__title">Vos Posts</div>
+    <div class="user__posts__block">
         {% for post in posts %}
             {% if post.content_type == 'TICKET' %}
                 <div class="ticket__block">{% include 'website/ticket_snippet.html' with post=post user=user %}</div>

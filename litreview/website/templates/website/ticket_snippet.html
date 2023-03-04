@@ -27,7 +27,7 @@
         {% endif %}
 
         {% if user_feed %}
-            <div class="user__post__button">
+            <div class="user__posts__button">
                 <a href="{% url 'update_ticket' post.user post.title %}?ticket_id={{post.id}}">
                     <button id="change__button" type="button" action=>Modifier</button></a>
 

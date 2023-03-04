@@ -199,11 +199,6 @@ class updateReviewView(LoginRequiredMixin, View):
                     'review_title' : 'Critique',
                 }
             )
-
-
-
-        
-        
         
 class userPostHistory(LoginRequiredMixin, View):
     template_name = "creation/user_posts.html"

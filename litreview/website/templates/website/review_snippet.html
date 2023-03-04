@@ -19,8 +19,15 @@
     </div>
     <div class="review__body">{{post.body}}</div>
     <div class="review__ticket">
-        <div class="ticket__header">Ticket - {{post.ticket.user}}</div>
-        <div class="ticket__title"> {{post.ticket.title}} </div>  
+        <div class="ticket__header">
+            <div class="ticket__user">
+                Ticket - {{post.ticket.user}}
+            </div>
+            {% if user_feed and post.user == user %}
+            <div class="ticket__time">{{post.time_created|date:'H:i, d F Y'}}</div> 
+            {% endif%}
+        </div>
+        <div class="ticket__title"> {{post.ticket.title}} </div>
         <div class="ticket__picture">
             {% if post.ticket.image %}
                 <img src="{{post.ticket.image.url}}" alt="image du livre">
@@ -37,7 +44,7 @@
     </div>
 
     {% if user_feed %}
-            <div class="user__post__button">
+            <div class="user__posts__button">
                 <a href="{% url 'update_review' post.user post.headline %}?review_id={{post.id}}">
                     <button id="change__button" type="button" action="">Modifier</button></a>
                 <a href="{% url 'delete_review' post.user post.headline %}?review_id={{post.id}}">

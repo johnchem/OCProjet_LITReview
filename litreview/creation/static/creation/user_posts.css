@@ -1,10 +1,20 @@
+.user__posts__title {
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.user__posts__block{
+    width:50%;
+    margin:auto;
+}
+
 .review__content {
     display: grid;
     padding: 1rem;
     grid-template: "headline rating" auto "body body" auto "ticket ticket" 1fr "button button" auto / auto 1fr;
 }
 
-.user__post__button {
+.user__posts__button {
     grid-area: button;
     align-self: center;
     justify-self: right;
@@ -13,7 +23,7 @@
     height: auto;
 }
 
-.user__post__button button{
+.user__posts__button button{
     width: fit-content;
     padding: 1rem;
 } 
