@@ -29,8 +29,9 @@ class creationTicketView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         ticket_creation = self.form_class_creation_ticket(request.POST, request.FILES)
         if ticket_creation.is_valid():
+            ticket = ticket_creation.save(commit = False)
             ticket.user = request.user
-            ticket = ticket_creation.save()
+            ticket.save()
             return redirect('feed')
         else:
             return render(
