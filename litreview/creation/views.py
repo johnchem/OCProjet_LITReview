@@ -88,9 +88,26 @@ class creationReviewView(LoginRequiredMixin, View):
     form_class_creation_review = CreateReview
     form_class_creation_ticket = CreateTicketCombine
 
+    def get(self, request, *args, **kwargs):
+        review_creation = self.form_class_creation_review()
+        ticket_creation = self.form_class_creation_ticket()
+
+        return render(
+                request,
+                self.template_name,
+                context = {
+                    'title': 'Créer un ticket et une revue',
+                    'ticket_form':ticket_creation,
+                    'review_form':review_creation,
+                    'ticket_title' : 'Livre / Article',
+                    'review_title' : 'Critique',
+                }
+        )
+            
+    
     def post(self, request, *args, **kwargs):
-        review_creation = self.form_class_creation_review(request.POST, request.FILES)
-        ticket_creation = self.form_class_creation_ticket(request.POST)
+        review_creation = self.form_class_creation_review(request.POST)
+        ticket_creation = self.form_class_creation_ticket(request.POST, request.FILES)
         
         if review_creation.is_valid() and ticket_creation.is_valid():
             ticket = ticket_creation.save(commit=False)
