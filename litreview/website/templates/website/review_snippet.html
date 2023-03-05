@@ -21,7 +21,12 @@
     <div class="review__ticket">
         <div class="ticket__header">
             <div class="ticket__user">
-                Ticket - {{post.ticket.user}}
+                Ticket - 
+                {% if post.user == user%} 
+                    Vous
+                {% else %}
+                    {{post.ticket.user}}
+                {% endif %}
             </div>
             {% if user_feed and post.user == user %}
             <div class="ticket__time">{{post.time_created|date:'H:i, d F Y'}}</div> 
