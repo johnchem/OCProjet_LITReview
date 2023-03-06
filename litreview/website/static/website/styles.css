@@ -1,16 +1,26 @@
 * { 
     font-size: 15px;
 }
-.nav__bar__block{
-    display:flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-content: center;
-    list-style-type: none;
+
+.nav__bar__title a {
+    float: none;
+    font-size: 2rem;
+    position: absolute;
+    left:50%;
+    transform: translate(-50%);
 }
 
-.nav__bar__block li{
-    margin: 10px;
+.nav__bar__block{
+    display:block;
+    height: 3rem;
+    width:100%;
+    position: relative;
+}
+
+.nav__bar__block a{
+    float: right;
+    text-align: center;
+    padding: 14px 16px;
 }
 
 .nav__bar__block:first-child{

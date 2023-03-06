@@ -23,18 +23,20 @@
     </head>
 
     <body>
-        <nav>
-            <ul class="nav__bar__block">
-                <li><a href={{ feed_url }}>LITReview</a></li>
-                <li><a href={{ feed_url }}>Flux</a></li>
-                <li><a href={{ post_url }}>Posts</a></li>
-                <li><a href={{ sub_url }}>Abonnements</a></li>
-                <li>{% if user.is_authenticated %}
-                        <a href="{% url 'logout' %}">Déconnecter {{user.username}}</a></li>
-                    {% else %}
-                        <a href="{% url 'login' %}">Se connecter</a></li>
-            </ul>   {% endif %}
-        </nav>
+        <div class="nav__bar__title">
+            <a href={{ feed_url }}>LITReview</a></li>
+        </div>
+        <div class="nav__bar__block">
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}">Déconnecter {{user.username}}</a></li>
+            {% else %}
+                <a href="{% url 'login' %}">Se connecter</a></li>
+            {% endif %}
+            <a href={{ sub_url }}>Abonnements</a></li>
+            <a href={{ post_url }}>Posts</a></li>
+            <a href={{ feed_url }}>Flux</a></li>
+            
+        </div>
         {% block content %} {% endblock %}
     </body>
 
