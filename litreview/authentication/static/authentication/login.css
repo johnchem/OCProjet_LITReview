@@ -1,10 +1,10 @@
 body{
     display: grid;
-    grid-template: "nav nav" auto "login signup" 1fr / 1fr 1fr;
+    grid-template: "blank blank" auto "login signup" 1fr / 1fr 1fr;
 }
 
-nav {
-    grid-area : nav
+.nav__bar__block{
+    visibility: hidden;
 }
 
 form {

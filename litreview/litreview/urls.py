@@ -31,7 +31,6 @@ urlpatterns = [
     path('', auth_views.LoginPage.as_view(), name='login'),
     path('signup/', auth_views.SignUpPage.as_view(), name='signup'),
     path('logout/', auth_views.logout_user, name='logout'),
-    path('main/', website_views.main, name='landing'),
     path('feed/', website_views.feed, name='feed'),
     path('<slug:username>/', include('network.urls', namespace='network')),
     path('<slug:username>/posts', creation_views.userPostHistory.as_view(), name='user_posts'),
