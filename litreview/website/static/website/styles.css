@@ -8,6 +8,16 @@
     position: absolute;
     left:50%;
     transform: translate(-50%);
+    z-index: 2;
+}
+
+a:visited{
+    color:black;
+}
+
+a:hover{
+    background-color: black;
+    color: white;
 }
 
 .nav__bar__block{
@@ -15,17 +25,13 @@
     height: 3rem;
     width:100%;
     position: relative;
+    z-index: 1;
 }
 
 .nav__bar__block a{
     float: right;
     text-align: center;
     padding: 14px 16px;
-}
-
-.nav__bar__block:first-child{
-    flex-grow: 2;
-    margin-left: 50%;
 }
 
 .feed__button{
