@@ -1,6 +1,9 @@
 .user__posts__title {
     font-size: 1.5rem;
     text-align: center;
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .user__posts__block{

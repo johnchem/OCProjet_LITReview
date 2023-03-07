@@ -1,7 +1,7 @@
 .feed__block{
-    align-items: center;
-    margin-left:1em;
-    margin-right: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
 }
 
 .ticket__block{
@@ -128,4 +128,12 @@
     align-self: center;
     justify-self: right;
     padding: 1.5rem;
+}
+
+.feed__button a {
+    width : 20%;
+}
+
+button {
+    width: 100%;
 }
