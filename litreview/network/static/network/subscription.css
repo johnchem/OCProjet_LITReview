@@ -69,9 +69,12 @@
     width: 100%;
     
     text-align: start;
-    vertical-align: middle;
     align-items: center;
     padding: 0.5rem;
+    box-sizing: border-box;
+
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .label::after {
