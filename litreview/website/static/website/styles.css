@@ -44,14 +44,14 @@ a:hover{
     margin:1rem;
 }
 
-button, .button{
+button, .button, input::file-selector-button{
     height: 3rem;
     width: 150px;
     transition-duration: 0.4s;
     border-radius: 5px;
 }
 
-button:hover, .button:hover{
+button:hover, .button:hover, input::file-selector-button:hover {
     background-color: black;
     color:white;
 }

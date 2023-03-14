@@ -9,15 +9,17 @@ class TicketLayout(Layout):
         super().__init__(
             Field('title', placeholder="Titre"),
             Field('description', placeholder="Taper votre message ici"),
+            Field('image', 
+                  onchange="PreviewImage()", 
+                  css_class="button",
+                  ),
             HTML("""
-            <img id="uploadPreview" src="">
-            """),
-            Field('image', onchange="PreviewImage()"),
+            <img id="uploadPreview" src="">"""),
         )
 
 class ReviewLayout(Layout):
     rating = forms.ChoiceField(widget=forms.RadioSelect)
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs): 
         super().__init__(
             Field('headline', placeholder='Titre'),
             'rating',
@@ -30,13 +32,15 @@ class CreateTicketAlone(forms.ModelForm):
         self.fields['title'].label = ''
         self.fields['description'].label = ''
 
-        self.fields['image'].label = 'Couverture'
-        self.fields['image'].widget.input_text = 'Nouvelle'
+        self.fields['image'].label = 'Image'
+        self.fields['image'].widget.label = 'Nouvelle'
         
         self.helper = FormHelper()
         self.helper.layout = Layout(
             TicketLayout(),
-            Submit('envoyer','Envoyer')
+            Submit('envoyer','Envoyer', 
+                   css_class="button",
+                   )
         )
 
     class Meta:
