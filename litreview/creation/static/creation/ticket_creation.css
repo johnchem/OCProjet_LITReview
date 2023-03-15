@@ -1,12 +1,42 @@
-title {
+.title {
     font-size: 1.5rem;
-text-align: center;
-width: 50%;
-margin-right: auto;
-margin-left: auto;
+    text-align: center;
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+form {
+    width: 60%;
+    margin: auto auto;
+    justify-items: center;
+}
+
+#id_title, #id_description{
+    width: 100%;
+    min-height: 3rem;
+}
+
+.control-label {
+    display: block;
+    margin: 1.5rem 0 0.5rem 0;    
+}
+
+#div_id_image{
+    display: block;
+    float: inline-start;
 }
 
 #uploadPreview {
-    max-height:200px;
-    max-width:auto;
+    max-width: 250px;
+    max-width: 150px;
+    display: block;
+    float: inline-end;
+    margin : 1.5rem auto 0 0;
+}
+
+#submit-id-envoyer{
+    display: block;
+    margin-left: auto;
+    margin-top: 260px;
 }

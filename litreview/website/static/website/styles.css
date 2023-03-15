@@ -55,3 +55,7 @@ button:hover, .button:hover, input::file-selector-button:hover {
     background-color: black;
     color:white;
 }
+
+.asteriskField {
+    display: none;
+}

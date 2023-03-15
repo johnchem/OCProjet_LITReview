@@ -14,7 +14,8 @@ class TicketLayout(Layout):
                   css_class="button",
                   ),
             HTML("""
-            <img id="uploadPreview" src="">"""),
+            <img id="uploadPreview" src="">
+            <br>"""),
         )
 
 class ReviewLayout(Layout):
@@ -29,8 +30,8 @@ class ReviewLayout(Layout):
 class CreateTicketAlone(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(CreateTicketAlone, self).__init__(*args, **kwargs)
-        self.fields['title'].label = ''
-        self.fields['description'].label = ''
+        # self.fields['title'].label = ''
+        # self.fields['description'].label = ''
 
         self.fields['image'].label = 'Image'
         self.fields['image'].widget.label = 'Nouvelle'
