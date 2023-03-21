@@ -6,13 +6,14 @@
 {% block extrahead %}
     <link rel="stylesheet" href="{% static 'creation/ticket_creation.css' %}" type="text/css" />
     <link rel="stylesheet" href="{% static 'creation/review_creation.css' %}" type="text/css" />
-{% endblock %}
+    {% endblock %}
 
 {% block title %}
     nouvelle critique
 {% endblock %}
 
 {% block content %}
+    <div class="review__creation__title title">Créer un ticket</div>
     <form method="post" enctype="multipart/form-data">
         <div class="ticket">
             <p>{{ticket_title}}</p>

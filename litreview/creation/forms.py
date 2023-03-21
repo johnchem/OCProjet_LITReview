@@ -30,9 +30,7 @@ class ReviewLayout(Layout):
 class CreateTicketAlone(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(CreateTicketAlone, self).__init__(*args, **kwargs)
-        # self.fields['title'].label = ''
-        # self.fields['description'].label = ''
-
+        
         self.fields['image'].label = 'Image'
         self.fields['image'].widget.label = 'Nouvelle'
         
@@ -51,14 +49,11 @@ class CreateTicketAlone(forms.ModelForm):
 class CreateTicketCombine(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(CreateTicketCombine, self).__init__(*args, **kwargs)
-        self.fields['title'].label = ''
-        self.fields['description'].label = ''
-
-        self.fields['image'].label = 'Couverture'
-        self.fields['image'].attrs = {'class' : 'image_container'} # effet ? 
+        self.fields['image'].label = 'Image'
         self.fields['image'].widget.initial_text = 'Actuel'
         self.fields['image'].widget.input_text = 'Nouvelle'
-        # self.fields['image'].widget.attrs = {'class':'turlututu'}
+
+        self.fields['description'].widget.attrs = {'cols':30, 'rows':5, 'style':''}
         
         self.helper = FormHelper()
         self.helper.form_tag = False

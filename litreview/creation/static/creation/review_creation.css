@@ -3,9 +3,25 @@
 }
 
 .ticket {
-    border : 1pt black solid;
+    min-height: 450px;    
 }
 
-form {
-    border : 1pt black solid;
+.button__field input{
+    display: block;
+    margin-left: auto;
+    margin-top: 1rem;
+}
+
+p {
+    font-size: 1.5rem;
+}
+
+#id_headline, #id_body{
+    width: 100%;
+}
+
+#div_id_rating div{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
 }
