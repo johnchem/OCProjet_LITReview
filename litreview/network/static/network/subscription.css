@@ -22,19 +22,22 @@
 #search__user__form{
     display: flex;
     align-items: center;
-    margin-left: 0.5rem;
     flex-direction: row;
     width:100%;
+    gap: 0.5rem;
 }
 
 #div_id_username{
     width: auto;
     flex-grow: 20;
-    padding: 0.5rem;
+    padding: 0.5rem 0 0.5rem 0;
 }
 
 #id_username{
     width:100%;
+    border-radius: 5px;
+    padding: 0;
+    border: 1px solid black;
 }
 
 #id_username::placeholder{
