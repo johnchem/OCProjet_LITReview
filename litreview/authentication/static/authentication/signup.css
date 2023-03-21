@@ -2,6 +2,10 @@
     visibility: hidden;
 }
 
+.hyper:hover{
+    background-color: none;
+}
+
 .signup__title {
     font-size: 1.5rem;
     text-align: center;
@@ -9,14 +13,19 @@
 
 form {
     display: block;
-    margin-left: 50%;
+    width:50%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #signup__form input{
-    transform: translate(-50%, 0%);
-    width : 300px;
-    padding: 0.3rem;
-    margin: 0.5rem;
+    width: 100%;
+    padding: 0.3rem 0 0.3rem 0;
+    margin: 0.5rem 0 0.5rem 0;
+}
+
+::placeholder{
+    text-align: center;
 }
 
 .help-block{
@@ -25,16 +34,11 @@ form {
 }
 
 .signup__button{
+    width: 50%;
     display:flex;
     flex-direction: row;
     margin-right: auto;
     margin-left: auto;
-    justify-content: center;
-    row-gap: 0.3rem;
-}
-
-.signup__button button {
-    margin: 0.3rem;
-    width: auto;
-    padding:0.5rem;
+    justify-content: right;
+    gap: 10px;
 }

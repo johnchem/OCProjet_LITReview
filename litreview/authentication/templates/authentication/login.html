@@ -10,13 +10,16 @@
 {% endblock %}
 
 {% block content %}
-    <p>{{message}}</p>
-    {% crispy form form.helper %}
+    <div class="login__signin">
+        <div class="login__signin__text title">Connectez-vous</div>
+        {% crispy form form.helper %}
+    </div>
     
     <div class="login__signup">
-        <div class="login__signup__text">Pas encore membre ? </div>
-        <a href="{% url 'signup' %}">
-            <button type="button" class="login__signup__button button">Inscrivez-vous maintenant !</button>
+
+        <div class="login__signup__text title">Inscrivez-vous maintenant</div>
+        <a class="login__signup__button hyper" href="{% url 'signup' %}">
+            <button type="button" class="login__signup__button button">S'inscrire</button>
         </a>
     </div>
 {% endblock content %}

@@ -11,10 +11,9 @@ class LoginPage(View):
 
     def get(self, request):
         form = self.form_class()
-        message = ''
-     
+        
         return render(
-        request, self.template_name, context={'form':form, 'message':message}
+        request, self.template_name, context={'form':form}
         )
 
     def post(self, request):

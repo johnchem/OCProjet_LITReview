@@ -1,14 +1,19 @@
 body{
     display: grid;
-    grid-template: "blank blank" auto "login signup" 1fr / 1fr 1fr;
+    grid-template: "blank blank" 0.5fr "signup signin" 1fr / 1fr 1fr;
 }
 
 .nav__bar__block{
     visibility: hidden;
 }
 
+.title{
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
 form {
-    grid-area: login;
+    grid-area: signin;
     display: block;
     margin-left: 50%;
 }
@@ -37,8 +42,10 @@ input {
     justify-content: center;
 }
 
-.login__signup__text{
-    margin: 0.5rem;
+.login__signin__text {
+    grid-area: signup;
+    display: flex block;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
-
-
