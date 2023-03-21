@@ -39,10 +39,10 @@ urlpatterns = [
     path('<slug:username>/newticket/', creation_views.creationTicketView.as_view(), name='create_ticket'),
     path('<slug:username>/newreview/', creation_views.creationReviewView.as_view(), name='create_review'),
     path('<slug:username>/addreview/', creation_views.addReviewView.as_view(), name='add_review'),
-    path('<slug:username>/review/<str:post_name>/update/', creation_views.updateTicketView.as_view(), name='update_ticket'),
-    path('<slug:username>/review/<str:post_name>/update/', creation_views.updateReviewView.as_view(), name='update_review'),
-    path('<slug:username>/review/<str:post_name>/delete/', delete_views.reviewDeletion.as_view(), name='delete_review'),
-    path('<slug:username>/ticket/<str:post_name>/delete/', delete_views.ticketDeletion.as_view(), name='delete_ticket'),
+    path('<slug:username>/review/<int:post_id>/update/', creation_views.updateReviewView.as_view(), name='update_review'),
+    path('<slug:username>/ticket/<int:post_id>/update/', creation_views.updateTicketView.as_view(), name='update_ticket'),
+    path('<slug:username>/review/<int:post_id>/delete/', delete_views.reviewDeletion.as_view(), name='delete_review'),
+    path('<slug:username>/ticket/<int:post_id>/delete/', delete_views.ticketDeletion.as_view(), name='delete_ticket'),
 ]
 
 if settings.DEBUG:

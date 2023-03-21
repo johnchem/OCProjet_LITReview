@@ -28,10 +28,10 @@
 
         {% if user_feed %}
             <div class="user__posts__button">
-                <a href="{% url 'update_ticket' post.user post.title %}?ticket_id={{post.id}}">
+                <a href="{% url 'update_ticket' post.user post.id %}?ticket_id={{post.id}}">
                     <button id="change__button" type="button" action=>Modifier</button></a>
 
-                <a href="{% url 'delete_ticket' post.user post.title %}?ticket_id={{post.id}}">
+                <a href="{% url 'delete_ticket' post.user post.id %}?ticket_id={{post.id}}">
                     <button id="delete__button" type="button" action=>Supprimer</button></a>
             </div>
         {% endif %}

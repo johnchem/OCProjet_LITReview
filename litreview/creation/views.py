@@ -167,11 +167,11 @@ class addReviewView(LoginRequiredMixin, View):
 
 
 class updateReviewView(LoginRequiredMixin, View):
-    template_name = 'creation/review_creation.html'
+    template_name = 'creation/add_review.html'
     form_class_creation_review = CreateReview
     form_class_creation_ticket = CreateTicketCombine
 
-    def post(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         review = models.Review.objects.get(id=request.GET['review_id'])
         ticket = review.ticket
 
@@ -183,7 +183,7 @@ class updateReviewView(LoginRequiredMixin, View):
                 self.template_name,
                 context = {
                     'title': title,
-                    'post':ticket,
+                    'post': ticket,
                     'review_form': review_creation,
                     'ticket_title' : 'Livre / Article',
                     'review_title' : 'Critique',
