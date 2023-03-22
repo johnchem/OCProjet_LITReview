@@ -1,6 +1,4 @@
 from django.urls import path
-from django.contrib import admin
-
 from network import views
 
 app_name = 'network'

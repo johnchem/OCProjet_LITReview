@@ -1,16 +1,17 @@
 from crispy_forms.helper import FormHelper, Layout
-from crispy_forms.layout import Submit, Field, HTML, Div
+from crispy_forms.layout import Submit, Field, HTML
 from django import forms
 
 from website.models import Ticket, Review
+
 
 class TicketLayout(Layout):
     def __init__(self, *args, **kwargs):
         super().__init__(
             Field('title', placeholder="Titre"),
             Field('description', placeholder="Taper votre message ici"),
-            Field('image', 
-                  onchange="PreviewImage()", 
+            Field('image',
+                  onchange="PreviewImage()",
                   css_class="button",
                   ),
             HTML("""
@@ -18,26 +19,29 @@ class TicketLayout(Layout):
             <br>"""),
         )
 
+
 class ReviewLayout(Layout):
     rating = forms.ChoiceField(widget=forms.RadioSelect)
-    def __init__(self, *args, **kwargs): 
+
+    def __init__(self, *args, **kwargs):
         super().__init__(
             Field('headline', placeholder='Titre'),
             'rating',
             Field('body', placeholder="Taper votre message ici"),
         )
 
+
 class CreateTicketAlone(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(CreateTicketAlone, self).__init__(*args, **kwargs)
-        
+
         self.fields['image'].label = 'Image'
         self.fields['image'].widget.label = 'Nouvelle'
-        
+
         self.helper = FormHelper()
         self.helper.layout = Layout(
             TicketLayout(),
-            Submit('envoyer','Envoyer', 
+            Submit('envoyer', 'Envoyer',
                    css_class="button",
                    )
         )
@@ -46,6 +50,7 @@ class CreateTicketAlone(forms.ModelForm):
         model = Ticket
         fields = ['title', 'description', 'image']
 
+
 class CreateTicketCombine(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(CreateTicketCombine, self).__init__(*args, **kwargs)
@@ -53,8 +58,12 @@ class CreateTicketCombine(forms.ModelForm):
         self.fields['image'].widget.initial_text = 'Actuel'
         self.fields['image'].widget.input_text = 'Nouvelle'
 
-        self.fields['description'].widget.attrs = {'cols':30, 'rows':5, 'style':''}
-        
+        self.fields['description'].widget.attrs = {
+            'cols': 30,
+            'rows': 5,
+            'style': '',
+            }
+
         self.helper = FormHelper()
         self.helper.form_tag = False
         self.helper.layout = Layout(
@@ -65,18 +74,21 @@ class CreateTicketCombine(forms.ModelForm):
         model = Ticket
         fields = ['title', 'description', 'image']
 
+
 class CreateReview(forms.ModelForm):
-    CHOICES = [('0','- 0'),
-                   ('1','- 1'),
-                   ('2','- 2'),
-                   ('3','- 3'),
-                   ('4','- 4'),
-                   ('5','- 5'),
-        ]
-    rating = forms.ChoiceField(choices=CHOICES,
-                            widget=forms.RadioSelect
-                            )
-    def __init__(self,*args, **kwargs):
+    CHOICES = [('0', '- 0'),
+               ('1', '- 1'),
+               ('2', '- 2'),
+               ('3', '- 3'),
+               ('4', '- 4'),
+               ('5', '- 5'),
+               ]
+    rating = forms.ChoiceField(
+        choices=CHOICES,
+        widget=forms.RadioSelect
+        )
+
+    def __init__(self, *args, **kwargs):
         super(CreateReview, self).__init__(*args, **kwargs)
         self.fields['headline'].label = 'Titre'
         self.fields['body'].label = 'Commentaire'
@@ -87,6 +99,7 @@ class CreateReview(forms.ModelForm):
         self.helper.layout = Layout(
             ReviewLayout(),
         )
+
     class Meta:
         model = Review
         fields = ['headline', 'rating', 'body']

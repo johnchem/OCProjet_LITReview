@@ -1,4 +1,3 @@
-
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Fieldset
 from django.forms import ModelForm
@@ -16,7 +15,7 @@ class SearchBox(forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["username"].widget.attrs.update({
-            'placeholder':'Suivre un utilisateur'
+            'placeholder': 'Suivre un utilisateur'
         })
 
     @property
@@ -31,16 +30,17 @@ class SearchBox(forms.Form):
             ))
         return helper
 
+
 class FollowedUserForm(ModelForm):
     user = forms.CharField(
         label='',
         widget=forms.HiddenInput,
         )
-    
+
     followed_user = forms.CharField(
         label='',
-        widget = forms.HiddenInput(attrs={
-            'label':'followed_user',
+        widget=forms.HiddenInput(attrs={
+            'label': 'followed_user',
             }
             )
         )
@@ -49,10 +49,11 @@ class FollowedUserForm(ModelForm):
         model = UserFollows
         fields = ['user', 'followed_user', ]
 
+
 class FollowedUserFormSetHelper(FormHelper):
     def __init__(self, *args, **kargs):
         super().__init__(*args, **kargs)
-        self.form_method ='post'
+        self.form_method = 'post'
         self.layout = Layout(
             Fieldset(
                 'user',

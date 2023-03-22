@@ -1,12 +1,9 @@
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit, Button
+from crispy_forms.layout import Submit
 
 from django import forms
-from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.core.exceptions import ValidationError
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
-
 
 
 class LoginForm(forms.Form):
@@ -14,22 +11,21 @@ class LoginForm(forms.Form):
         label='',
         max_length=63)
     password = forms.CharField(
-        max_length=63, 
+        max_length=63,
         widget=forms.PasswordInput)
-    
+
     def __init__(self, *args, **kargs):
         super().__init__(*args, **kargs)
 
         for field in self.fields:
-            # self.fields[field].help_text = None
             self.fields[field].label = ''
-        
+
         self.fields["username"].widget.attrs.update({
-            'placeholder':"Nom d'utilisateur",
+            'placeholder': "Nom d'utilisateur",
         })
         self.fields["password"].widget.attrs.update({
-            'placeholder':'Mot de passe',
-            'maxlength':16,
+            'placeholder': 'Mot de passe',
+            'maxlength': 16,
         })
 
     @property
@@ -41,9 +37,10 @@ class LoginForm(forms.Form):
         helper.error_text_inline = True
         # self.helper.add_input(Submit("login__button","Se Connecter"))
         helper.add_input(Submit(name="login__button",
-                    value="Se Connecter",
-                    css_class="login__button button"))
+                                value="Se Connecter",
+                                css_class="login__button button"))
         return helper
+
 
 class SignUpForm(UserCreationForm):
     def __init__(self, *args, **kargs):
@@ -52,29 +49,29 @@ class SignUpForm(UserCreationForm):
         for field in self.fields:
             self.fields[field].help_text = None
             self.fields[field].label = ''
-        
+
         self.fields["username"].widget.attrs.update({
-            'class':'form-input',
-            'required':'True',
-            'name':'username',
-            'type':'text',
-            'placeholder':"Nom d'utilisateur",
+            'class': 'form-input',
+            'required': 'True',
+            'name': 'username',
+            'type': 'text',
+            'placeholder': "Nom d'utilisateur",
         })
         self.fields["password1"].widget.attrs.update({
-            'class':'form-input',
-            'required':'True',
-            'name':'password1',
-            'type':'password',
-            'placeholder':'Mot de passe',
-            'maxlength':16,
+            'class': 'form-input',
+            'required': 'True',
+            'name': 'password1',
+            'type': 'password',
+            'placeholder': 'Mot de passe',
+            'maxlength': 16,
         })
         self.fields["password2"].widget.attrs.update({
-            'class':'form-input',
-            'required':'True',
-            'name':'password2',
-            'type':'password',
-            'placeholder':'Confirmer mot de passe',
-            'maxlenght':16,
+            'class': 'form-input',
+            'required': 'True',
+            'name': 'password2',
+            'type': 'password',
+            'placeholder': 'Confirmer mot de passe',
+            'maxlenght': 16,
         })
 
     @property
@@ -84,8 +81,7 @@ class SignUpForm(UserCreationForm):
         helper.form_method = 'post'
         helper.error_text_inline = False
         return helper
-        
+
     class Meta(UserCreationForm.Meta):
         model = get_user_model()
         fields = ('username', 'password1', 'password2')
-

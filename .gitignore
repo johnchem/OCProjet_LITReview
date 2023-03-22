@@ -1,6 +1,10 @@
 # virtual environment
 venv/
 
+# testing
+flake-report/
+.flake8
+
 #git
 .git/
 
