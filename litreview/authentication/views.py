@@ -24,7 +24,7 @@ class LoginPage(View):
             user = authenticate(
                 username=form.cleaned_data['username'],
                 password=form.cleaned_data['password'],
-                )
+            )
             if user is not None:
                 login(request, user)
                 return redirect('feed')

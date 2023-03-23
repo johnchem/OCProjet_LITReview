@@ -35,3 +35,6 @@
 `venv\Script\activate`
 - Start the server with the command
 `python litreview/manage.py runserver`
+
+# Run PEP8 check
+flake8 litreview --format=html --htmldir=flake-report

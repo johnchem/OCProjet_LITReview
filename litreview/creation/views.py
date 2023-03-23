@@ -159,7 +159,7 @@ class addReviewView(LoginRequiredMixin, View):
                     'ticket_title': 'Livre / Article',
                     'review_title': 'Critique',
                 }
-            )
+        )
 
     def post(self, request, *args, **kwargs):
         ticket = models.Ticket.objects.get(id=request.POST['ticket_id'])
@@ -195,7 +195,7 @@ class updateReviewView(LoginRequiredMixin, View):
                     'ticket_title': 'Livre / Article',
                     'review_title': 'Critique',
                 }
-            )
+        )
 
     def post(self, request, *args, **kwargs):
         review = models.Review.objects.get(id=request.GET['review_id'])
@@ -205,7 +205,7 @@ class updateReviewView(LoginRequiredMixin, View):
             request.POST,
             request.FILES,
             instance=review
-            )
+        )
         title = "Modification de la revue"
 
         if review_update.is_valid():
@@ -233,12 +233,12 @@ class userPostHistory(LoginRequiredMixin, View):
         user_tickets = models.Ticket.objects.filter(user=user)
         user_tickets = user_tickets.annotate(
             content_type=Value('TICKET', CharField())
-            )
+        )
 
         user_reviews = models.Review.objects.filter(user=user)
         user_reviews = user_reviews.annotate(
             content_type=Value('REVIEW', CharField())
-            )
+        )
 
         posts = sorted(
             chain(user_reviews, user_tickets),
@@ -261,12 +261,12 @@ class userPostHistory(LoginRequiredMixin, View):
         user_tickets = models.Ticket.objects.filter(user=user)
         user_tickets = user_tickets.annotate(
             content_type=Value('TICKET', CharField())
-            )
+        )
 
         user_reviews = models.Review.objects.filter(user=user)
         user_reviews = user_reviews.annotate(
             content_type=Value('REVIEW', CharField())
-            )
+        )
 
         posts = sorted(
             chain(user_reviews, user_tickets),
