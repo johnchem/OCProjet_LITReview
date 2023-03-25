@@ -2,7 +2,7 @@
 - Go to the repertory where the application will be store
 - In the repertory, copy the repertory from github
 `git clone https://github.com/johnchem/OCProjet_LITReview.git`
-# Instalation on Window
+# installation on Window
 ## Creation of the virtual environment
 - Move into the project folder
 `cd OCProjet_LITReview`
@@ -10,17 +10,17 @@
 `python -m venv venv`
 ## Start the virtual environment
 - `venv\Script\activate`
-## Installation of the dependancies
+## Installation of the dependencies
 - `python -m pip install -r requirement.txt.`
 ## launch the application
 - start the virtual environment
 `python -m venv venv`
 - Start the server with the command
 `python -m manage.py runserver`
-- go to the application page with a webbrowser
+- go to the application page with a web browser
 `http://127.0.0.1:8000/`
 
-# Instalation on Linux
+# installation on Linux
 ## Creation of the virtual environment
 - Move into the project folder
 `cd OCProjet_LITReview`

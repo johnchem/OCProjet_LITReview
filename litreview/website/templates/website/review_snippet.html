@@ -22,7 +22,7 @@
         <div class="ticket__header">
             <div class="ticket__user">
                 Ticket - 
-                {% if post.user == user%} 
+                {% if post.ticket.user == user%} 
                     Vous
                 {% else %}
                     {{post.ticket.user}}
